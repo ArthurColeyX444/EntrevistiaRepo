@@ -29,6 +29,16 @@ namespace EntrevistiaWEB.Controllers
 
             return View();
         }
+        public ActionResult PerfilCliente()
+        {
+            // Validación de seguridad básica: Cerrar sesión y mandarlo al login
+            if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Cliente")
+            {
+                return RedirectToAction("PerfilCliente", "Home");
+            }
+
+            return View();
+        }
 
         public ActionResult InicioAdmin()
         {
