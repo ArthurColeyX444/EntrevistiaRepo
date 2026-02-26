@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Configuración de Perfil - EntrevistIA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/PerfilCliente.css">
+
+<div class="profile-viewport">
+    <div class="background-glow"></div>
+
+    <div class="container content-container">
+        <header class="p-header" data-aos="fade-down">
+            <a href="@Url.Action("InicioCliente", "Home")" class="back-link">
+                <span class="icon">󰌍</span> Dashboard
+            </a>
+            <div class="header-actions">
+                <button class="btn-edit-profile">Editar Perfil</button>
+            </div>
+        </header>
+
+        <div class="p-layout">
+            <aside class="p-side" data-aos="fade-right">
+                <div class="id-card-glass">
+                    <div class="avatar-wrapper">
+                        <div class="avatar-main">@Session["Nombre"].ToString().Substring(0, 1).ToUpper()</div>
+                        <div class="online-status"></div>
+                    </div>
+                    <div class="id-text">
+                        <h2>@Session["Nombre"]</h2>
+                        <span class="user-id-tag">ID: #@Session["Identificacion"]</span>
+                    </div>
+
+                    <div class="mini-stats-grid">
+                        <div class="m-stat">
+                            <strong>12</strong>
+                            <span>Sesiones</span>
+                        </div>
+                        <div class="m-stat">
+                            <strong>85%</strong>
+                            <span>Eficiencia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-check">
+                    <p>Estado de seguridad</p>
+                    <div class="status-bar active">
+                        <span class="dot"></span> Cuenta Verificada
+                    </div>
+                </div>
+            </aside>
+
+            <main class="p-content" data-aos="fade-up">
+                <div class="data-grid">
+                    <div class="data-block wide" data-aos="zoom-in">
+                        <label>Nombre del Profesional</label>
+                        <div class="data-value">@Session["Nombre"]</div>
+                    </div>
+
+                    <div class="data-block" data-aos="zoom-in" data-aos-delay="100">
+                        <label>Contacto Primario</label>
+                        <div class="data-value">@Session["Email"]</div>
+                    </div>
+
+                    <div class="data-block" data-aos="zoom-in" data-aos-delay="200">
+                        <label>Edad</label>
+                        <div class="data-value">@(Session["Edad"] ?? "--") años</div>
+                    </div>
+
+                    <div class="data-block" data-aos="zoom-in" data-aos-delay="300">
+                        <label>Teléfono Móvil</label>
+                        <div class="data-value">@(Session["Telefono"] ?? "Pendiente")</div>
+                    </div>
+
+                    <div class="data-block" data-aos="zoom-in" data-aos-delay="400">
+                        <label>Especialidad</label>
+                        <div class="data-value highlight">Desarrollador Full-Stack</div>
+                    </div>
+                </div>
+
+                <div class="ai-insight-box" data-aos="fade-up">
+                    <h4>Insight de EntrevistIA</h4>
+                    <p>"Tu desempeño en la categoría de <strong>Desarrollo Web</strong> está por encima del 90% de los usuarios. Recomendamos practicar entrevistas de arquitectura."</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>

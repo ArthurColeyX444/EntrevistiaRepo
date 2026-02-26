@@ -212,3 +212,55 @@ h1 { font-size: 4.2rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: 80
     .feature-grid { grid-template-columns: 1fr; }
     .glass-container { flex-direction: column; gap: 3rem; }
 }
+
+/* Alineación del Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+
+.logo-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* El Pill del usuario arriba */
+.user-nav-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    padding: 4px 12px 4px 4px;
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .user-nav-pill:hover {
+        background: #f1f5f9;
+        border-color: var(--primary);
+    }
+
+.nav-avatar {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+}

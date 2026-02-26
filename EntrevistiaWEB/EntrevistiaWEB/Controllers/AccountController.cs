@@ -105,8 +105,20 @@ namespace EntrevistiaWEB.Controllers
             }
         }
 
-            // GET: Account
-            public ActionResult Index()
+        public ActionResult Logout()
+        {
+            // Limpia todas las variables de sesión
+            Session.Clear();
+            Session.Abandon();
+
+            // Opcional: Elimina la cookie de autenticación si usas FormsAuthentication
+            // System.Web.Security.FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        // GET: Account
+        public ActionResult Index()
         {
             return View();
         }

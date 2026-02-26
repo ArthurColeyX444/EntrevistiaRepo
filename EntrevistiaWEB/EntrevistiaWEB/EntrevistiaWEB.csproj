@@ -301,6 +301,7 @@
     <Content Include="Content\InicioAdmin.css" />
     <Content Include="Content\InicioCliente.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\PerfilCliente.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -352,6 +353,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\InicioCliente.cshtml" />
     <Content Include="Views\Home\InicioAdmin.cshtml" />
+    <Content Include="Views\Home\PerfilCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

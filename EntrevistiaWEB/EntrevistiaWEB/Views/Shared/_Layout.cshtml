@@ -17,15 +17,48 @@
     <nav class="navbar">
         <div class="container nav-flex">
             <div class="logo">
-                <div class="logo-icon"></div>
+                <div class="logo-icon blue-grad">🧠</div>
                 <span>EntrevistIA</span>
             </div>
+
             <div class="nav-links">
                 <a href="@Url.Action("Index", "Home")">Inicio</a>
-                <a href="@Url.Action("Login", "Home")" class="btn-login" style="text-decoration:none;">Iniciar Sesión</a>
+
+                @if (Session["Nombre"] != null)
+                {
+                    <div class="profile-menu-container">
+                        <div class="user-nav-pill" onclick="toggleProfileMenu()">
+                            <div class="nav-avatar">@Session["Nombre"].ToString().Substring(0, 2).ToUpper()</div>
+                            <span class="nav-username">@Session["Nombre"]</span>
+                            <span class="dropdown-arrow">▼</span>
+                        </div>
+
+                        <div id="profileDropdown" class="profile-dropdown-content">
+                            <div class="dropdown-header">
+                                <strong>@Session["Nombre"]</strong>
+                                <span>@Session["Email"]</span>
+                            </div>
+                            <hr />
+                            <a href="@Url.Action("PerfilCliente", "Home")" class="dropdown-item">
+                                <span class="icon">👤</span> Mi Perfil
+                            </a>
+                            <a href="@Url.Action("InicioCliente", "Home")" class="dropdown-item">
+                                <span class="icon">📊</span> Dashboard
+                            </a>
+                            <hr />
+                            <a href="javascript:void(0)" onclick="confirmLogout()" class="dropdown-item logout">
+                                <span class="icon">🚪</span> Cerrar Sesión
+                            </a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+
+                    <a href="@Url.Action("Login", "Home")" class="btn-login">Iniciar Sesión</a>
+                }
             </div>
-            </div>
-        
+        </div>
     </nav>
 
     <main>
@@ -49,5 +82,43 @@
         AOS.init({ duration: 1000, once: true });
     </script>
     @RenderSection("scripts", required: false)
+
+<script>
+    function toggleProfileMenu() {
+        const menu = document.getElementById("profileDropdown");
+        if (menu) menu.classList.toggle("show");
+    }
+
+    // Cerrar si el usuario hace clic en otro lado
+    window.addEventListener('click', function(e) {
+        const container = document.querySelector('.profile-menu-container');
+        if (container && !container.contains(e.target)) {
+            document.getElementById("profileDropdown").classList.remove("show");
+        }
+    });
+
+    // Pregunta de confirmación para salir
+    function confirmLogout() {
+        const respuesta = confirm("¿Estás seguro de que deseas cerrar tu sesión en EntrevistIA?");
+        if (respuesta) {
+            // Aquí puedes redirigir a una acción de Logout real si la tienes,
+            // por ahora limpia la sesión y va al Login.
+            window.location.href = "@Url.Action("Login", "Home")";
+        }
+    }
+
+
+    function confirmLogout() {
+        const respuesta = confirm("¿Estás seguro de que deseas cerrar tu sesión en EntrevistIA?");
+        if (respuesta) {
+            // IMPORTANTE: Redirigimos a la acción Logout del controlador Account
+            window.location.href = "@Url.Action("Logout", "Account")";
+        }
+    }
+
+    // El resto de tus funciones (toggleProfileMenu, etc.) se mantienen igual
+
+</script>
+    
 </body>
 </html>
