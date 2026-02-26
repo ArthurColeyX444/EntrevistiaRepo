@@ -10,7 +10,7 @@
 
         <div class="login-info" data-aos="fade-right">
             <h1>Bienvenido a <br><span class="gradient-text">EntrevistIA</span></h1>
-            <p>La plataforma más avanzada para practicar entrevistas de trabajo con inteligencia artificial. Mejora tus habilidades y consigue el trabajo de tus sueños.</p>
+            <p>La plataforma más avanzada para practicar entrevistas de trabajo con inteligencia artificial.</p>
 
             <div class="image-preview">
                 <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600" alt="Oficina">
@@ -24,6 +24,7 @@
 
         <div class="login-card-container" data-aos="fade-left">
             <div class="auth-card">
+
                 <div class="back-container">
                     <a href="@Url.Action("Index", "Home")" class="link-back">
                         <span class="arrow">←</span> Volver al inicio
@@ -38,13 +39,14 @@
                     <button class="tab-btn" onclick="openTab(event, 'recover')">Recuperar</button>
                 </div>
 
+                <!-- LOGIN -->
                 <div id="login" class="tab-content active">
                     <h3>Iniciar Sesión</h3>
                     <p class="tab-subtitle">Accede a tu cuenta para continuar</p>
 
                     @if (ViewBag.Error != null)
                     {
-                        <div class="alert-error" style="color: #e11d48; background: #fff1f2; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px solid #fda4af; text-align: left;">
+                        <div class="alert-error">
                             <strong>⚠️ Error:</strong> @ViewBag.Error
                         </div>
                     }
@@ -53,41 +55,60 @@
                     {
                         <div class="input-group">
                             <label>Correo o Usuario</label>
-                            <input type="text" name="usuario" placeholder="correo@ejemplo.com o usuario" required>
+                            <input type="text" name="usuario" required>
                         </div>
+
                         <div class="input-group">
                             <label>Contraseña</label>
-                            <input type="password" name="password" placeholder="********" required>
+                            <input type="password" name="password" required>
                         </div>
-                        <button type="submit" class="btn-primary-full">Iniciar Sesión</button>
+
+                        <button type="submit" class="btn-primary-full">
+                            Iniciar Sesión
+                        </button>
                     }
+
+                    <!-- DIVIDER -->
+                    <div class="divider">
+                        <span>o continuar con</span>
+                    </div>
+
+                    <!-- GOOGLE LOGIN -->
+                    <a href="@Url.Action("ExternalLogin", "Account", new { provider = "Google" })"
+                       class="btn-google">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" />
+                        Continuar con Google
+                    </a>
                 </div>
 
+
+                <!-- REGISTRO -->
                 <div id="register" class="tab-content">
+
                     <h3>Crear Cuenta</h3>
 
                     @if (ViewBag.ErrorRegistro != null)
                     {
-                        <div class="alert-error" style="color: #e11d48; background: #fff1f2; padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #fda4af;">
+                        <div class="alert-error">
                             <strong>⚠️ Error:</strong> @ViewBag.ErrorRegistro
                         </div>
                     }
 
-                    @using (Html.BeginForm("RegisterCliente", "Account", FormMethod.Post, new { @class = "grid-form", id = "formRegistro" }))
+                    @using (Html.BeginForm("RegisterCliente", "Account", FormMethod.Post, new { @class = "grid-form" }))
                     {
                         <div class="input-group">
-                            <label>Nombre Completo (Solo letras)</label>
-                            <input type="text" name="nombresCliente" pattern="[A-Za-z\s]+" title="Solo se permiten letras" required>
+                            <label>Nombre Completo</label>
+                            <input type="text" name="nombresCliente" pattern="[A-Za-z\s]+" required>
                         </div>
 
                         <div class="input-group">
-                            <label>Identificación (Solo números)</label>
-                            <input type="text" name="idCliente" inputmode="numeric" pattern="[0-9]+" title="Solo se permiten números" required>
+                            <label>Identificación</label>
+                            <input type="text" name="idCliente" pattern="[0-9]+" required>
                         </div>
 
                         <div class="input-group full-width">
                             <label>Correo Electrónico</label>
-                            <input type="email" name="correoCliente" placeholder="ejemplo@correo.com" required>
+                            <input type="email" name="correoCliente" required>
                         </div>
 
                         <div class="input-group">
@@ -96,8 +117,8 @@
                         </div>
 
                         <div class="input-group">
-                            <label>Teléfono (Solo números)</label>
-                            <input type="tel" name="telefonoCliente" pattern="[0-9]+" title="Solo se permiten números" required>
+                            <label>Teléfono</label>
+                            <input type="tel" name="telefonoCliente" pattern="[0-9]+" required>
                         </div>
 
                         <div class="input-group full-width">
@@ -105,59 +126,66 @@
                             <input type="password" name="contraseñaCliente" minlength="6" required>
                         </div>
 
-                        <button type="submit" class="btn-primary-full full-width">Crear Cuenta</button>
+                        <button type="submit" class="btn-primary-full full-width">
+                            Crear Cuenta
+                        </button>
                     }
+
+                    <!-- DIVIDER -->
+                    <div class="divider">
+                        <span>o registrarte con</span>
+                    </div>
+
+                    <!-- GOOGLE REGISTER -->
+                    <a href="@Url.Action("ExternalLogin", "Account", new { provider = "Google" })"
+                       class="btn-google">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" />
+                        Registrarme con Google
+                    </a>
                 </div>
 
+
+                <!-- RECOVER -->
                 <div id="recover" class="tab-content">
                     <h3>Recuperar Contraseña</h3>
-                    <p class="tab-subtitle">Te enviaremos un enlace de recuperación</p>
-                    <form action="#">
+                    <p class="tab-subtitle">Te enviaremos un enlace</p>
+
+                    <form>
                         <div class="input-group">
                             <label>Correo Electrónico</label>
-                            <input type="email" placeholder="correo@ejemplo.com" required>
+                            <input type="email" required>
                         </div>
-                        <button type="submit" class="btn-primary-full">Enviar Enlace</button>
+
+                        <button type="submit" class="btn-primary-full">
+                            Enviar Enlace
+                        </button>
                     </form>
                 </div>
 
             </div>
         </div>
-
     </div>
 </div>
 
 @section scripts {
     <script>
-        // Función principal para cambiar de pestañas
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].classList.remove("active");
             }
+
             tablinks = document.getElementsByClassName("tab-btn");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active");
             }
+
             document.getElementById(tabName).classList.add("active");
+
             if (evt) {
                 evt.currentTarget.classList.add("active");
             }
-        }
-
-        
-        @if (ViewBag.ErrorRegistro != null)
-        {
-            <text>
-            document.addEventListener("DOMContentLoaded", function() {
-                
-                const registerTabBtn = document.querySelector('button[onclick*="register"]');
-                if (registerTabBtn) {
-                    openTab({ currentTarget: registerTabBtn }, 'register');
-                }
-            });
-            </text>
         }
     </script>
 }
