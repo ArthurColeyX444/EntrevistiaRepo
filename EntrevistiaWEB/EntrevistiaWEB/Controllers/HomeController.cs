@@ -21,7 +21,7 @@ namespace EntrevistiaWEB.Controllers
         }
         public ActionResult InicioCliente()
         {
-            // Validación de seguridad básica: si no hay sesión, mandarlo al login
+            // Validación de seguridad básica: Cerrar sesión y mandarlo al login
             if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Cliente")
             {
                 return RedirectToAction("Login", "Home");
@@ -32,7 +32,7 @@ namespace EntrevistiaWEB.Controllers
 
         public ActionResult InicioAdmin()
         {
-            // Validación de seguridad básica: si no hay sesión, mandarlo al login
+            // Validación de seguridad básica: Cerrar sesión y mandarlo al login
             if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Admin")
             {
                 return RedirectToAction("Login", "Home");

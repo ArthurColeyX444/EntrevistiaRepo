@@ -16,7 +16,7 @@ namespace EntrevistiaWEB.Controllers
 
         public AccountController()
         {
-            // Reemplaza con tu cadena de Atlas
+            // Cadena de conexion MongoBD Atlas
             var client = new MongoClient("mongodb+srv://arthurcoley:634990@entrevistia.jstrsql.mongodb.net/?retryWrites=true&w=majority&appName=entrevistia");
             var database = client.GetDatabase("EntrevistIA");
 
@@ -27,7 +27,7 @@ namespace EntrevistiaWEB.Controllers
         [HttpPost]
         public ActionResult Login(string usuario, string password)
         {
-            // 1. Intentar buscar como Administrador
+            // 1. Buscar como Administrador
             var admin = _admins.Find(a => (a.correoAdmin == usuario || a.idAdmin == usuario)
                                      && a.contraseñaAdmin == password).FirstOrDefault();
 
@@ -38,7 +38,7 @@ namespace EntrevistiaWEB.Controllers
                 return RedirectToAction("InicioAdmin", "Home");
             }
 
-            // 2. Si no es admin, intentar buscar como Cliente
+            // 2. Buscar como cliente
             var cliente = _clientes.Find(c => (c.correoCliente == usuario || c.idCliente == usuario)
                                          && c.contraseñaCliente == password).FirstOrDefault();
 
