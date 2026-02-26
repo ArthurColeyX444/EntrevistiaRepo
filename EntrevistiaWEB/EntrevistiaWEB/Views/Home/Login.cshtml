@@ -141,12 +141,12 @@
             }
         }
 
-        // Lógica para detectar si hubo un error en el registro y mantener la pestaña abierta
+        
         @if (ViewBag.ErrorRegistro != null)
         {
             <text>
             document.addEventListener("DOMContentLoaded", function() {
-                // Buscamos el botón de registro y activamos la pestaña
+                
                 const registerTabBtn = document.querySelector('button[onclick*="register"]');
                 if (registerTabBtn) {
                     openTab({ currentTarget: registerTabBtn }, 'register');
