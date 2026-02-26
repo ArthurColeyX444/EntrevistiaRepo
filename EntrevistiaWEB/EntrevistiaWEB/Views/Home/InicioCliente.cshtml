@@ -13,15 +13,7 @@
                 <span class="user-badge">Panel de Candidato</span>
                 <h1>¡Hola, <span class="gradient-text">@Session["Nombre"]</span>!</h1>
                 <p>Continúa perfeccionando tu técnica. Hoy es un buen día para una simulación técnica.</p>
-            </div>
-            <div class="user-mini-card">
-                <div class="avatar-circle">@Session["Nombre"].ToString().Substring(0, 2).ToUpper()</div>
-                <div class="user-meta">
-                    <span class="u-name">@Session["Nombre"]</span>
-                    <span class="u-mail">@Session["Email"]</span>
-                </div>
-                <a href="@Url.Action("Login", "Home")" class="btn-exit">Salir</a>
-            </div>
+  </div>
         </header>
 
         <div class="impact-metrics" data-aos="fade-up">
@@ -105,3 +97,31 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Abrir/Cerrar menú al hacer clic
+    function toggleProfileMenu() {
+        document.getElementById("profileDropdown").classList.toggle("show");
+    }
+
+    // Cerrar el menú si se hace clic fuera de él
+    window.onclick = function(event) {
+        if (!event.target.closest('.profile-menu-container')) {
+            var dropdowns = document.getElementsByClassName("profile-dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+
+    // Confirmación de Salida
+    function confirmLogout() {
+        if (confirm("¿Estás seguro de que deseas cerrar sesión?")) {
+            // Redirige a la acción de Login/Logout
+            window.location.href = "@Url.Action("Login", "Home")";
+        }
+    }
+</script>

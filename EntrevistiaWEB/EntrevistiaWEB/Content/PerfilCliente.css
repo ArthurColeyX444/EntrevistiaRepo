@@ -1,0 +1,147 @@
+﻿:root {
+    --bg-dark: #0a0c10;
+    --card-bg: rgba(17, 24, 39, 0.7);
+    --accent: #6366f1;
+    --neon-pink: #ec4899;
+    --text-white: #f8fafc;
+    --text-dim: #94a3b8;
+}
+
+/* Fondo Dinámico */
+.profile-viewport {
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    color: var(--text-white);
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+
+.background-glow {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+}
+
+/* Layout Asimétrico */
+.p-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glassmorphism ID Card */
+.id-card-glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+}
+
+.avatar-main {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent), var(--neon-pink));
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 900;
+    transform: rotate(-5deg);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Bloques de Datos de Estilo Técnico */
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.data-block {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid var(--accent);
+    padding: 25px;
+    border-radius: 0 20px 20px 0;
+    transition: 0.3s;
+}
+
+    .data-block:hover {
+        background: rgba(255, 255, 255, 0.07);
+        transform: translateX(5px);
+    }
+
+    .data-block.wide {
+        grid-column: span 2;
+    }
+
+    .data-block label {
+        display: block;
+        color: var(--text-dim);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+.data-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+    .data-value.highlight {
+        background: linear-gradient(to right, var(--accent), var(--neon-pink));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+/* Insight Box (IA Feel) */
+.ai-insight-box {
+    margin-top: 40px;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), transparent);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+    .ai-insight-box h4 {
+        color: var(--accent);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .p-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .data-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .data-block.wide {
+        grid-column: span 1;
+    }
+}
