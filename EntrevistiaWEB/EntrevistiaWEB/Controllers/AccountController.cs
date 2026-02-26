@@ -53,43 +53,60 @@ namespace EntrevistiaWEB.Controllers
             return View("~/Views/Home/Login.cshtml");
         }
 
-        
+
         [HttpPost]
         public ActionResult RegisterCliente(Cliente nuevo)
         {
             try
             {
-                // 1. Verificar si el correo ya existe
+                // 1. Validaciones de Formato (Servidor)
+                if (string.IsNullOrEmpty(nuevo.nombresCliente) || !System.Text.RegularExpressions.Regex.IsMatch(nuevo.nombresCliente, @"^[a-zA-Z\s]+$"))
+                {
+                    ViewBag.ErrorRegistro = "El nombre solo debe contener letras.";
+                    return View("~/Views/Home/Login.cshtml");
+                }
+
+                if (!nuevo.correoCliente.Contains("@"))
+                {
+                    ViewBag.ErrorRegistro = "El correo electrónico debe ser válido (incluir @).";
+                    return View("~/Views/Home/Login.cshtml");
+                }
+
+                if (nuevo.edadCliente <= 0 || nuevo.edadCliente > 120)
+                {
+                    ViewBag.ErrorRegistro = "Por favor, ingrese una edad válida.";
+                    return View("~/Views/Home/Login.cshtml");
+                }
+
+                // 2. Verificación de Duplicados en MongoDB
                 var correoExiste = _clientes.Find(c => c.correoCliente == nuevo.correoCliente).FirstOrDefault();
                 if (correoExiste != null)
                 {
-                    ViewBag.ErrorRegistro = "El correo electrónico ya se encuentra registrado.";
+                    ViewBag.ErrorRegistro = "Este correo ya está registrado.";
                     return View("~/Views/Home/Login.cshtml");
                 }
 
-                // 2. Verificar si la identificación ya existe
                 var idExiste = _clientes.Find(c => c.idCliente == nuevo.idCliente).FirstOrDefault();
                 if (idExiste != null)
                 {
-                    ViewBag.ErrorRegistro = "La identificación ya se encuentra registrada.";
+                    ViewBag.ErrorRegistro = "Esta identificación ya está registrada.";
                     return View("~/Views/Home/Login.cshtml");
                 }
 
-                // 3. Si todo está bien, insertar
+                // 3. Inserción Final
                 _clientes.InsertOne(nuevo);
                 TempData["Success"] = "¡Registro exitoso! Ya puedes ingresar.";
                 return RedirectToAction("Login", "Home");
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorRegistro = "Ocurrió un error en el servidor: " + ex.Message;
+                ViewBag.ErrorRegistro = "Error crítico: " + ex.Message;
                 return View("~/Views/Home/Login.cshtml");
             }
         }
-        
 
-        // GET: Account
-        public ActionResult Index()
+            // GET: Account
+            public ActionResult Index()
         {
             return View();
         }

@@ -1,61 +1,61 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\user\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\views\\home\\inicioadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\inicioadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\content\\inicioadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\content\\inicioadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\content\\iniciocliente.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\content\\iniciocliente.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\views\\home\\iniciocliente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\iniciocliente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\models\\administrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\models\\administrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\content\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\views\\home\\inicioadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\inicioadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\content\\inicioadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\content\\inicioadmin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\content\\iniciocliente.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\content\\iniciocliente.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\views\\home\\iniciocliente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\iniciocliente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\models\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\models\\administrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\models\\administrador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\content\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\content\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\daniel ariz\\documents\\github\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\content\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\content\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\content\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
@@ -66,160 +66,181 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 11,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "InicioAdmin.cshtml",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
-              "RelativeDocumentMoniker": "EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
-              "RelativeToolTip": "EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAwwG8AAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-26T02:36:38.546Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
+              "Title": "InicioAdmin.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
+              "RelativeDocumentMoniker": "EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
+              "RelativeToolTip": "EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAwwG8AAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-26T02:36:38.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "InicioCliente.css",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\InicioCliente.css",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\InicioCliente.css",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Content\\InicioCliente.css",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\InicioCliente.css",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\InicioCliente.css",
               "RelativeToolTip": "EntrevistiaWEB\\Content\\InicioCliente.css",
               "ViewState": "AgIAADsAAAAAAAAAAADgv0cAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-26T02:14:33.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-26T02:14:33.747Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\AccountController.cs",
               "RelativeToolTip": "EntrevistiaWEB\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAArwCYAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAAGIAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-26T01:33:16.92Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\HomeController.cs",
               "RelativeToolTip": "EntrevistiaWEB\\Controllers\\HomeController.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAA2wCMAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-25T23:58:36.177Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-25T23:58:36.177Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\Login.cshtml",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Views\\Home\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\Login.cshtml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\Login.cshtml",
               "RelativeToolTip": "EntrevistiaWEB\\Views\\Home\\Login.cshtml",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAwwJ0AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAQwF0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-02-25T23:49:09.503Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "LoginController.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Controllers\\LoginController.cs",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Controllers\\LoginController.cs",
               "RelativeToolTip": "EntrevistiaWEB\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBMAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-26T00:03:18.978Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "InicioAdmin.css",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\InicioAdmin.css",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\InicioAdmin.css",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Content\\InicioAdmin.css",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\InicioAdmin.css",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\InicioAdmin.css",
               "RelativeToolTip": "EntrevistiaWEB\\Content\\InicioAdmin.css",
               "ViewState": "AgIAAKwAAAAAAAAAAAAwwMUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-26T02:36:59.332Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-26T02:36:59.332Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "InicioCliente.cshtml",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioCliente.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioCliente.cshtml",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Views\\Home\\InicioCliente.cshtml",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioCliente.cshtml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioCliente.cshtml",
               "RelativeToolTip": "EntrevistiaWEB\\Views\\Home\\InicioCliente.cshtml",
               "ViewState": "AgIAAFEAAAAAAAAAAAAwwGoAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-26T01:58:17.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-26T01:58:17.514Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "EntrevistiaWEB\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAmwIcAAABJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-02-25T23:23:46.337Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Administrador.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Models\\Administrador.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Models\\Administrador.cs",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Models\\Administrador.cs",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Models\\Administrador.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Models\\Administrador.cs",
               "RelativeToolTip": "EntrevistiaWEB\\Models\\Administrador.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAAwBQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T01:30:01.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-26T01:30:01.642Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Cliente.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Models\\Cliente.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Models\\Cliente.cs",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Models\\Cliente.cs",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Models\\Cliente.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Models\\Cliente.cs",
               "RelativeToolTip": "EntrevistiaWEB\\Models\\Cliente.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAmwBUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-26T01:32:32.223Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-26T01:32:32.223Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "EntrevistiaWEB\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABwAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-02-26T00:12:23.18Z",
               "EditorCaption": ""
@@ -228,27 +249,25 @@
               "$type": "Document",
               "DocumentIndex": 13,
               "Title": "Login.css",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\Login.css",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\Login.css",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Content\\Login.css",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\Login.css",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\Login.css",
               "RelativeToolTip": "EntrevistiaWEB\\Content\\Login.css",
               "ViewState": "AgIAAKkAAAAAAAAAAAAwwMIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-26T00:45:56.92Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-26T00:45:56.92Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
               "Title": "style.css",
-              "DocumentMoniker": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\style.css",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\style.css",
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Content\\style.css",
-              "ToolTip": "C:\\Users\\Daniel Ariz\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\style.css",
+              "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Content\\style.css",
               "RelativeToolTip": "EntrevistiaWEB\\Content\\style.css",
               "ViewState": "AgIAAM4AAAAAAAAAAADwv9UAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-25T23:39:34.798Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-25T23:39:34.798Z"
             }
           ]
         }

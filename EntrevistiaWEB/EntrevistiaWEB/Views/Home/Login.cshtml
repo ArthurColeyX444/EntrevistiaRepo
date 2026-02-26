@@ -65,41 +65,46 @@
 
                 <div id="register" class="tab-content">
                     <h3>Crear Cuenta</h3>
-                    <p class="tab-subtitle">Crea tu cuenta para comenzar</p>
 
                     @if (ViewBag.ErrorRegistro != null)
                     {
-                        <div class="alert-error" style="color: #e11d48; background: #fff1f2; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px solid #fda4af; text-align: left;">
-                            <strong>⚠️ Error de Registro:</strong> @ViewBag.ErrorRegistro
+                        <div class="alert-error" style="color: #e11d48; background: #fff1f2; padding: 10px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #fda4af;">
+                            <strong>⚠️ Error:</strong> @ViewBag.ErrorRegistro
                         </div>
                     }
 
-                    @using (Html.BeginForm("RegisterCliente", "Account", FormMethod.Post, new { @class = "grid-form" }))
+                    @using (Html.BeginForm("RegisterCliente", "Account", FormMethod.Post, new { @class = "grid-form", id = "formRegistro" }))
                     {
                         <div class="input-group">
-                            <label>Nombre Completo</label>
-                            <input type="text" name="nombresCliente" placeholder="Juan Pérez" required>
+                            <label>Nombre Completo (Solo letras)</label>
+                            <input type="text" name="nombresCliente" pattern="[A-Za-z\s]+" title="Solo se permiten letras" required>
                         </div>
+
                         <div class="input-group">
-                            <label>Identificación</label>
-                            <input type="text" name="idCliente" placeholder="12345678" required>
+                            <label>Identificación (Solo números)</label>
+                            <input type="text" name="idCliente" inputmode="numeric" pattern="[0-9]+" title="Solo se permiten números" required>
                         </div>
+
                         <div class="input-group full-width">
                             <label>Correo Electrónico</label>
-                            <input type="email" name="correoCliente" placeholder="correo@ejemplo.com" required>
+                            <input type="email" name="correoCliente" placeholder="ejemplo@correo.com" required>
                         </div>
+
                         <div class="input-group">
                             <label>Edad</label>
-                            <input type="number" name="edadCliente" placeholder="25" required>
+                            <input type="number" name="edadCliente" min="1" max="120" required>
                         </div>
+
                         <div class="input-group">
-                            <label>Teléfono</label>
-                            <input type="tel" name="telefonoCliente" placeholder="+57 300..." required>
+                            <label>Teléfono (Solo números)</label>
+                            <input type="tel" name="telefonoCliente" pattern="[0-9]+" title="Solo se permiten números" required>
                         </div>
+
                         <div class="input-group full-width">
                             <label>Contraseña</label>
-                            <input type="password" name="contraseñaCliente" placeholder="********" required>
+                            <input type="password" name="contraseñaCliente" minlength="6" required>
                         </div>
+
                         <button type="submit" class="btn-primary-full full-width">Crear Cuenta</button>
                     }
                 </div>
