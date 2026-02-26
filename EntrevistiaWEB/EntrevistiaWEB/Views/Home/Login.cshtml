@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "Acceder - EntrevistIA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/Login.css">
+
+<div class="login-page-wrapper">
+    <div class="container login-flex">
+
+        <div class="login-info" data-aos="fade-right">
+            <h1>Bienvenido a <br><span class="gradient-text">EntrevistIA</span></h1>
+            <p>La plataforma más avanzada para practicar entrevistas de trabajo con inteligencia artificial. Mejora tus habilidades y consigue el trabajo de tus sueños.</p>
+
+            <div class="image-preview">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600" alt="Oficina">
+            </div>
+
+            <div class="info-card">
+                <h5>Para Aprendices</h5>
+                <p>Regístrate como estudiante para recibir retroalimentación personalizada con IA.</p>
+            </div>
+        </div>
+
+        <div class="login-card-container" data-aos="fade-left">
+            <div class="auth-card">
+                <div class="back-container">
+                    <a href="@Url.Action("Index", "Home")" class="link-back">
+                        <span class="arrow">←</span> Volver al inicio
+                    </a>
+                </div>
+
+                <div class="auth-icon blue-grad">🧠</div>
+
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'login')">Ingresar</button>
+                    <button class="tab-btn" onclick="openTab(event, 'register')">Registro</button>
+                    <button class="tab-btn" onclick="openTab(event, 'recover')">Recuperar</button>
+                </div>
+
+                <div id="login" class="tab-content active">
+                    <h3>Iniciar Sesión</h3>
+                    <p class="tab-subtitle">Accede a tu cuenta para continuar</p>
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert-error" style="color: #e11d48; background: #fff1f2; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px solid #fda4af; text-align: left;">
+                            <strong>⚠️ Error:</strong> @ViewBag.Error
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+                        <div class="input-group">
+                            <label>Correo o Usuario</label>
+                            <input type="text" name="usuario" placeholder="correo@ejemplo.com o usuario" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Contraseña</label>
+                            <input type="password" name="password" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="btn-primary-full">Iniciar Sesión</button>
+                    }
+                </div>
+
+                <div id="register" class="tab-content">
+                    <h3>Crear Cuenta</h3>
+                    <p class="tab-subtitle">Crea tu cuenta para comenzar</p>
+
+                    @if (ViewBag.ErrorRegistro != null)
+                    {
+                        <div class="alert-error" style="color: #e11d48; background: #fff1f2; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.85rem; border: 1px solid #fda4af; text-align: left;">
+                            <strong>⚠️ Error de Registro:</strong> @ViewBag.ErrorRegistro
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("RegisterCliente", "Account", FormMethod.Post, new { @class = "grid-form" }))
+                    {
+                        <div class="input-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" name="nombresCliente" placeholder="Juan Pérez" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Identificación</label>
+                            <input type="text" name="idCliente" placeholder="12345678" required>
+                        </div>
+                        <div class="input-group full-width">
+                            <label>Correo Electrónico</label>
+                            <input type="email" name="correoCliente" placeholder="correo@ejemplo.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Edad</label>
+                            <input type="number" name="edadCliente" placeholder="25" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Teléfono</label>
+                            <input type="tel" name="telefonoCliente" placeholder="+57 300..." required>
+                        </div>
+                        <div class="input-group full-width">
+                            <label>Contraseña</label>
+                            <input type="password" name="contraseñaCliente" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="btn-primary-full full-width">Crear Cuenta</button>
+                    }
+                </div>
+
+                <div id="recover" class="tab-content">
+                    <h3>Recuperar Contraseña</h3>
+                    <p class="tab-subtitle">Te enviaremos un enlace de recuperación</p>
+                    <form action="#">
+                        <div class="input-group">
+                            <label>Correo Electrónico</label>
+                            <input type="email" placeholder="correo@ejemplo.com" required>
+                        </div>
+                        <button type="submit" class="btn-primary-full">Enviar Enlace</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        // Función principal para cambiar de pestañas
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            if (evt) {
+                evt.currentTarget.classList.add("active");
+            }
+        }
+
+        // Lógica para detectar si hubo un error en el registro y mantener la pestaña abierta
+        @if (ViewBag.ErrorRegistro != null)
+        {
+            <text>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Buscamos el botón de registro y activamos la pestaña
+                const registerTabBtn = document.querySelector('button[onclick*="register"]');
+                if (registerTabBtn) {
+                    openTab({ currentTarget: registerTabBtn }, 'register');
+                }
+            });
+            </text>
+        }
+    </script>
+}

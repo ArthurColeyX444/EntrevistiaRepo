@@ -1,26 +1,139 @@
-﻿<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="aspnetTitle">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-            a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-            is an ideal platform for building RESTful applications on the .NET Framework.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-        </section>>
+﻿@{
+    ViewBag.Title = "EntrevistIA - Domina tu Entrevista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="hero container">
+    <div class="hero-text" data-aos="fade-right">
+        <span class="badge">Nueva versión 2.0 disponible</span>
+        <h1>Prepárate para tu <br><span class="gradient-text">entrevista ideal</span></h1>
+        <p>Utilizamos IA generativa de última generación para simular entornos reales de entrevista. Practica, falla en privado y brilla en público.</p>
+        <div class="hero-actions">
+            <a href="@Url.Action("Login", "Home")" class="btn-primary">Comenzar Gratis</a>
+            <button class="btn-video"><span>▶</span> Ver Demo</button>
+        </div>
+        <div class="hero-stats">
+            <div><strong>10k+</strong> Usuarios</div>
+            <div class="divider"></div>
+            <div><strong>95%</strong> Éxito</div>
+            <div class="divider"></div>
+            <div><strong>24/7</strong> Soporte</div>
+        </div>
     </div>
-</main>
+    <div class="hero-visual" data-aos="zoom-in-up">
+        <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000" alt="Entrevista">
+            <div class="floating-card">
+                <p>Feedback IA: "Tu lenguaje corporal denota confianza"</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="features container">
+    <div class="section-header" data-aos="fade-up">
+        <h2>¿Por qué elegir nuestra IA?</h2>
+        <p>Tecnología diseñada por reclutadores y psicólogos organizacionales.</p>
+    </div>
+    <div class="feature-grid">
+        <div class="feat-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box blue-grad">💬</div>
+            <h3>Multimodal</h3>
+            <p>Chat, audio en tiempo real y análisis de video HD para una experiencia inmersiva.</p>
+        </div>
+        <div class="feat-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box purple-grad">🧠</div>
+            <h3>IA Predictiva</h3>
+            <p>Anticipamos las preguntas que te harán basado en tu perfil y el cargo al que aspiras.</p>
+        </div>
+        <div class="feat-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box pink-grad">🎯</div>
+            <h3>Foco en el Sector</h3>
+            <p>Especializaciones en Tech, Finanzas, Medicina, Arte y servicios al cliente.</p>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works container">
+    <div class="section-header" data-aos="fade-up">
+        <h2>¿Cómo funciona?</h2>
+        <p>En solo 3 pasos, estarás practicando entrevistas como un profesional.</p>
+    </div>
+    <div class="steps-grid">
+        <div class="step-item" data-aos="fade-right" data-aos-delay="100">
+            <div class="step-circle blue-grad">1</div>
+            <h4>Configura tu Perfil</h4>
+            <p>Crea tu cuenta y personaliza tu trayectoria profesional.</p>
+        </div>
+        <div class="step-item" data-aos="fade-right" data-aos-delay="200">
+            <div class="step-circle purple-grad">2</div>
+            <h4>Selecciona el Reto</h4>
+            <p>Elige entre cientos de escenarios categorizados por industria.</p>
+        </div>
+        <div class="step-item" data-aos="fade-right" data-aos-delay="300">
+            <div class="step-circle pink-grad">3</div>
+            <h4>Practica y Mejora</h4>
+            <p>Realiza la entrevista y recibe feedback instantáneo detallado.</p>
+        </div>
+    </div>
+</section>
+
+<section class="modes container">
+    <div class="glass-container" data-aos="zoom-in">
+        <div class="mode-item">
+            <span class="mode-icon">⌨️</span>
+            <h4>Texto</h4>
+            <ul class="mode-list">
+                <li>Contador de palabras</li>
+                <li>Ideal para principiantes</li>
+            </ul>
+        </div>
+        <div class="mode-item">
+            <span class="mode-icon">🎙️</span>
+            <h4>Voz</h4>
+            <ul class="mode-list">
+                <li>Análisis de tono</li>
+                <li>Detector de muletillas</li>
+            </ul>
+        </div>
+        <div class="mode-item">
+            <span class="mode-icon">📸</span>
+            <h4>Video</h4>
+            <ul class="mode-list">
+                <li>Contacto visual</li>
+                <li>Presencia profesional</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="team container">
+    <div class="section-header" data-aos="fade-up">
+        <h2>Nuestro Equipo</h2>
+        <div class="team-grid">
+            <div class="team-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="team-avatar blue-grad">JC</div>
+                <h3>Jork Coley</h3>
+                <p>Desarrollador Full-Stack</p>
+            </div>
+            <div class="team-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="team-avatar purple-grad">JM</div>
+                <h3>Jesus Mejia</h3>
+                <p>Desarrollador Full-Stack</p>
+            </div>
+            <div class="team-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="team-avatar pink-grad">AG</div>
+                <h3>Allyson Gamarra</h3>
+                <p>Desarrollador Full-Stack</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-full">
+    <div class="container" data-aos="zoom-out">
+        <h2>¿Listo para transformar tu carrera profesional?</h2>
+        <p>Únete hoy mismo a la revolución de la preparación laboral.</p>
+        <a href="@Url.Action("Login", "Home")" class="btn-white">Comenzar Gratis Ahora</a>
+    </div>
+</section>

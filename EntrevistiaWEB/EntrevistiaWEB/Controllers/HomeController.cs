@@ -14,5 +14,32 @@ namespace EntrevistiaWEB.Controllers
 
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+        public ActionResult InicioCliente()
+        {
+            // Validación de seguridad básica: si no hay sesión, mandarlo al login
+            if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Cliente")
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            return View();
+        }
+
+        public ActionResult InicioAdmin()
+        {
+            // Validación de seguridad básica: si no hay sesión, mandarlo al login
+            if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Admin")
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            return View();
+        }
+
     }
 }

@@ -1,0 +1,210 @@
+﻿:root {
+    --primary: #6366f1;
+    --accent: #ec4899;
+    --bg-dashboard: #fdfdff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+}
+
+.dashboard-wrapper {
+    background-color: var(--bg-dashboard);
+    min-height: 100vh;
+    padding-top: 40px;
+    color: var(--text-main);
+}
+
+/* Header */
+.db-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.user-badge {
+    background: #eef2ff;
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.user-mini-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+/* Métricas Tipográficas (Adiós tarjetas) */
+.impact-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 40px;
+}
+
+.m-value {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+    display: block;
+    background: linear-gradient(to bottom, var(--text-main), #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.m-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Card de Enfoque (Contenido principal) */
+.focus-card {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-radius: 30px;
+    padding: 40px;
+    color: white;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+}
+
+.focus-content {
+    flex: 1;
+    z-index: 2;
+}
+
+.category-tag {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.btn-start-focus {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 14px;
+    font-weight: 700;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ai-glow {
+    position: absolute;
+    right: -50px;
+    top: -50px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99,102,241,0.3) 0%, transparent 70%);
+    filter: blur(40px);
+}
+
+/* Sidebar Glassmorphism */
+.glass-sidebar {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 30px;
+    border-radius: 30px;
+    position: sticky;
+    top: 100px;
+}
+
+/* Gráfico Circular */
+.circular-progress {
+    width: 150px;
+    margin: 30px auto;
+    position: relative;
+}
+
+.circle {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.3s ease;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3;
+}
+
+.percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* Grid Layout */
+.db-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+/* Elementos de lista modernos */
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f1f5f9;
+    transition: 0.3s;
+}
+
+    .list-item:hover {
+        transform: translateX(10px);
+    }
+
+.item-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.blue {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.purple {
+    background: #f5f3ff;
+    color: #6d28d9;
+}

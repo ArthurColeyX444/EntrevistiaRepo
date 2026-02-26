@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Panel de Control - EntrevistIA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/InicioCliente.css">
+
+<div class="dashboard-wrapper">
+    <div class="container">
+
+        <header class="db-header" data-aos="fade-down">
+            <div class="welcome-text">
+                <span class="user-badge">Panel de Candidato</span>
+                <h1>¡Hola, <span class="gradient-text">@Session["Nombre"]</span>!</h1>
+                <p>Continúa perfeccionando tu técnica. Hoy es un buen día para una simulación técnica.</p>
+            </div>
+            <div class="user-mini-card">
+                <div class="avatar-circle">@Session["Nombre"].ToString().Substring(0, 2).ToUpper()</div>
+                <div class="user-meta">
+                    <span class="u-name">@Session["Nombre"]</span>
+                    <span class="u-mail">@Session["Email"]</span>
+                </div>
+                <a href="@Url.Action("Logout", "Account")" class="btn-exit">Salir</a>
+            </div>
+        </header>
+
+        <div class="impact-metrics" data-aos="fade-up">
+            <div class="metric-block">
+                <span class="m-value">85<small>%</small></span>
+                <span class="m-label">Puntaje Global</span>
+            </div>
+            <div class="metric-block">
+                <span class="m-value">03</span>
+                <span class="m-label">Simulaciones</span>
+            </div>
+            <div class="metric-block">
+                <span class="m-value">95<small>m</small></span>
+                <span class="m-label">Tiempo de Práctica</span>
+            </div>
+        </div>
+
+        <div class="db-grid">
+            <main class="db-main" data-aos="fade-up" data-aos-delay="200">
+                <div class="section-title">
+                    <h3>Entrevistas Sugeridas</h3>
+                    <a href="#">Ver catálogo completo →</a>
+                </div>
+
+                <div class="focus-card">
+                    <div class="focus-content">
+                        <span class="category-tag">Más popular</span>
+                        <h2>Entrevista Técnica: Frontend</h2>
+                        <p>Domina React, JavaScript moderno y arquitectura de componentes.</p>
+                        <div class="focus-meta">
+                            <span>⏱ 30 min</span>
+                            <span>❓ 8 preguntas</span>
+                        </div>
+                        <button class="btn-start-focus">Iniciar Simulación</button>
+                    </div>
+                    <div class="focus-visual">
+                        <div class="ai-glow"></div>
+                    </div>
+                </div>
+
+                <div class="recent-list">
+                    <h4>Actividad Reciente</h4>
+                    <div class="list-item">
+                        <div class="item-icon blue">JS</div>
+                        <div class="item-info">
+                            <strong>Lógica de Programación</strong>
+                            <span>Completada hace 2 días</span>
+                        </div>
+                        <span class="item-score">92%</span>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-icon purple">HR</div>
+                        <div class="item-info">
+                            <strong>Habilidades Blandas</strong>
+                            <span>Completada hace 5 días</span>
+                        </div>
+                        <span class="item-score">78%</span>
+                    </div>
+                </div>
+            </main>
+
+            <aside class="db-sidebar" data-aos="fade-left" data-aos-delay="300">
+                <div class="glass-sidebar">
+                    <h4>Tu Progreso</h4>
+                    <div class="progress-container">
+                        <div class="circular-progress">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <div class="percentage">85%</div>
+                        </div>
+                    </div>
+                    <ul class="stats-list">
+                        <li><span>Objetivo mensual</span> <strong>90%</strong></li>
+                        <li><span>Racha actual</span> <strong>4 días</strong></li>
+                    </ul>
+                    <button class="btn-secondary-full">Configurar Objetivos</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>

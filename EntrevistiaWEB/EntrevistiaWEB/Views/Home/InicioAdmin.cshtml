@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Comando de Administración - EntrevistIA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/InicioAdmin.css">
+
+<div class="admin-wrapper">
+    <div class="container">
+
+        <header class="admin-header" data-aos="fade-down">
+            <div class="admin-title">
+                <span class="status-indicator">Sistema Activo</span>
+                <h1>Panel de <span class="gradient-text">Administración</span></h1>
+                <p>Gestión de infraestructura, usuarios y modelos de IA generativa.</p>
+            </div>
+            <div class="admin-profile">
+                <div class="admin-avatar">AD</div>
+                <div class="admin-meta">
+                    <strong>@Session["Nombre"]</strong>
+                    <span>Nivel: Superusuario</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="global-metrics" data-aos="fade-up">
+            <div class="m-unit">
+                <span class="m-number">245</span>
+                <span class="m-desc">Clientes Totales</span>
+            </div>
+            <div class="m-unit">
+                <span class="m-number">1.2k</span>
+                <span class="m-desc">Sesiones IA</span>
+            </div>
+            <div class="m-unit">
+                <span class="m-number">78.5<small>%</small></span>
+                <span class="m-desc">Score Promedio</span>
+            </div>
+            <div class="m-unit">
+                <span class="m-number">89</span>
+                <span class="m-desc">Modelos Activos</span>
+            </div>
+        </div>
+
+        <div class="admin-grid">
+            <section class="admin-section" data-aos="fade-right" data-aos-delay="200">
+                <div class="section-top">
+                    <h3>Registros Recientes</h3>
+                    <button class="btn-text">Ver todos los clientes</button>
+                </div>
+
+                <div class="data-table">
+                    <div class="table-row">
+                        <div class="client-info">
+                            <strong>Ana García</strong>
+                            <span>ana@email.com</span>
+                        </div>
+                        <div class="client-status">Estudiante</div>
+                        <div class="client-date">9/1/2026</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="client-info">
+                            <strong>Carlos López</strong>
+                            <span>carlos@email.com</span>
+                        </div>
+                        <div class="client-status">Estudiante</div>
+                        <div class="client-date">8/1/2026</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="client-info">
+                            <strong>María Silva</strong>
+                            <span>maria@email.com</span>
+                        </div>
+                        <div class="client-status">Estudiante</div>
+                        <div class="client-date">7/1/2026</div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="admin-sidebar" data-aos="fade-left" data-aos-delay="300">
+                <div class="control-panel">
+                    <h4>Estado de la IA</h4>
+                    <div class="ai-status-card">
+                        <div class="pulse-container">
+                            <div class="pulse-ring"></div>
+                            <div class="pulse-dot"></div>
+                        </div>
+                        <span>Motor de Procesamiento: <strong>Óptimo</strong></span>
+                    </div>
+
+                    <div class="popular-models">
+                        <h5>Entrevistas Populares</h5>
+                        <div class="model-stat">
+                            <span>Frontend React</span>
+                            <div class="progress-bar"><div class="bar" style="width: 85%"></div></div>
+                        </div>
+                        <div class="model-stat">
+                            <span>Recursos Humanos</span>
+                            <div class="progress-bar"><div class="bar" style="width: 65%"></div></div>
+                        </div>
+                        <div class="model-stat">
+                            <span>Backend Node.js</span>
+                            <div class="progress-bar"><div class="bar" style="width: 45%"></div></div>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary-admin">Generar Nueva Plantilla</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
