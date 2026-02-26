@@ -54,7 +54,7 @@ body {
 .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.9rem; }
 
 .btn-login {
-    background: var(--text-dark);
+ 
     color: white;
     border: none;
     padding: 0.7rem 1.5rem;
