@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
-using Microsoft.Owin.Security;
+using Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
-using Owin;
+using Microsoft.Owin.Security;
 
 [assembly: OwinStartup(typeof(EntrevistiaWEB.Startup))]
 
@@ -22,8 +22,9 @@ namespace EntrevistiaWEB
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "TU_CLIENT_ID",
-                ClientSecret = "TU_CLIENT_SECRET"
+                ClientId = "35229897295-tgio1666kqtmdcggm3vasshdukbr6cf7.apps.googleusercontent.com",
+                ClientSecret = "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",
+                CallbackPath = new PathString("/signin-google")
             });
         }
     }
