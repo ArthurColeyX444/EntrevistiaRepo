@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.Owin.Security; // 🔥 AGREGADO
-using System.Security.Claims; // 🔥 AGREGADO
+using Microsoft.Owin.Security;
+using System.Security.Claims; 
 
 namespace EntrevistiaWEB.Controllers
 {
@@ -123,7 +123,7 @@ namespace EntrevistiaWEB.Controllers
             }
         }
 
-        // 🔥🔥🔥 GOOGLE LOGIN AGREGADO (NO MODIFICA NADA DE LO TUYO)
+        
 
         public void ExternalLogin(string provider)
         {
@@ -139,7 +139,7 @@ namespace EntrevistiaWEB.Controllers
         {
             var auth = HttpContext.GetOwinContext().Authentication;
 
-            // Authenticate the external cookie to obtain the external identity
+            
             var authResult = auth.AuthenticateAsync("ExternalCookie").Result;
 
             if (authResult == null || authResult.Identity == null)
@@ -147,11 +147,11 @@ namespace EntrevistiaWEB.Controllers
 
             var externalIdentity = (ClaimsIdentity)authResult.Identity;
 
-            // Try to extract email and name from available claim types
+            
             var email = externalIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email || c.Type == "email" || c.Type == "urn:google:email")?.Value;
             var name = externalIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name || c.Type == "name" || c.Type == "urn:google:name" || c.Type == "given_name" || c.Type == "urn:google:given_name")?.Value;
 
-            // If we have an email, ensure there's a Cliente in MongoDB (no duplicates)
+            
             if (!string.IsNullOrEmpty(email))
             {
                 var existing = _clientes.Find(c => c.correoCliente == email).FirstOrDefault();
@@ -173,19 +173,19 @@ namespace EntrevistiaWEB.Controllers
                     }
                     catch (Exception ex)
                     {
-                        // Surface DB insertion errors so it's easier to debug
+                        
                         TempData["ErrorDB"] = "No se pudo guardar el cliente en la base de datos: " + ex.Message;
                     }
                 }
 
-                // Set session as Cliente
+                
                 Session["Perfil"] = "Cliente";
                 Session["Nombre"] = name ?? email;
             }
 
-            // Create an application identity and sign in so the user is authenticated in the app
+            
             var appIdentity = new ClaimsIdentity(externalIdentity.Claims, "ApplicationCookie");
-            // Ensure the app identity includes useful claims
+            
             if (!appIdentity.HasClaim(c => c.Type == ClaimTypes.Name))
                 appIdentity.AddClaim(new Claim(ClaimTypes.Name, name ?? email));
             if (!appIdentity.HasClaim(c => c.Type == ClaimTypes.Email))
@@ -193,11 +193,11 @@ namespace EntrevistiaWEB.Controllers
             if (!appIdentity.HasClaim(c => c.Type == ClaimTypes.Role))
                 appIdentity.AddClaim(new Claim(ClaimTypes.Role, "Cliente"));
 
-            // Sign out external cookie and sign in with application cookie
+            
             auth.SignOut("ExternalCookie");
             auth.SignIn(new AuthenticationProperties { IsPersistent = false }, appIdentity);
 
-            // Redirect client to their inicio
+            
             return RedirectToAction("InicioCliente", "Home");
         }
 

@@ -101,8 +101,7 @@
     function confirmLogout() {
         const respuesta = confirm("¿Estás seguro de que deseas cerrar tu sesión en EntrevistIA?");
         if (respuesta) {
-            // Aquí puedes redirigir a una acción de Logout real si la tienes,
-            // por ahora limpia la sesión y va al Login.
+    
             window.location.href = "@Url.Action("Login", "Home")";
         }
     }
@@ -111,12 +110,12 @@
     function confirmLogout() {
         const respuesta = confirm("¿Estás seguro de que deseas cerrar tu sesión en EntrevistIA?");
         if (respuesta) {
-            // IMPORTANTE: Redirigimos a la acción Logout del controlador Account
-            window.location.href = "@Url.Action("Logout", "Account")";
+    
+            window.location.href = "@Url.Action("Login", "Home")";
         }
     }
 
-    // El resto de tus funciones (toggleProfileMenu, etc.) se mantienen igual
+    
 
 </script>
     
