@@ -12,8 +12,18 @@ namespace EntrevistiaWEB
     {
         public void Configuration(IAppBuilder app)
         {
-            app.SetDefaultSignInAsAuthenticationType("ApplicationCookie");
+            // Use a dedicated external cookie so external providers (Google) write the
+            // external identity to the ExternalCookie. Then in the callback we read
+            // that cookie, create an application identity and sign-in the user.
+            app.SetDefaultSignInAsAuthenticationType("ExternalCookie");
 
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = "ExternalCookie",
+                AuthenticationMode = AuthenticationMode.Passive
+            });
+
+            // Application cookie (what the app uses to keep the user signed in)
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = "ApplicationCookie",
