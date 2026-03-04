@@ -1,0 +1,16 @@
+/* Background animation canvas - sits behind page content */
+.bg-animation-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+}
+
+/* Ensure body is transparent so canvas shows through if needed */
+body {
+  background-color: transparent !important;
+}

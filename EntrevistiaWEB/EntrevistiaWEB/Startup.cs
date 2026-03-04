@@ -34,7 +34,7 @@ namespace EntrevistiaWEB
             {
                 ClientId = "35229897295-tgio1666kqtmdcggm3vasshdukbr6cf7.apps.googleusercontent.com",
                 ClientSecret = "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",
-                CallbackPath = new PathString("/signin-google")
+                CallbackPath = new PathString("/signin-google") 
 
 
 
