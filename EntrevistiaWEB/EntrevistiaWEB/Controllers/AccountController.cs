@@ -206,5 +206,19 @@ namespace EntrevistiaWEB.Controllers
         {
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            // 1. Limpiamos las variables de sesión que creamos a mano
+            Session.Clear();
+            Session.Abandon();
+
+            // 2. Limpiamos las cookies de autenticación de Owin (las de Google/External)
+            var auth = HttpContext.GetOwinContext().Authentication;
+            auth.SignOut("ApplicationCookie", "ExternalCookie");
+
+            // 3. Redirigimos al inicio de la página o al Login
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

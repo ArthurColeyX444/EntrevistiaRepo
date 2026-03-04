@@ -1,5 +1,52 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
+<style>
+    /* FORZAR LA ESTRUCTURA DEL MENÚ DESPLEGABLE */
+    .profile-menu-container {
+        position: relative !important;
+        display: inline-block;
+    }
+
+    .profile-dropdown-content {
+        display: none !important; /* ESTO ES LO QUE LO OCULTA POR DEFECTO */
+        position: absolute !important;
+        top: 120%;
+        right: 0;
+        background-color: #ffffff;
+        min-width: 220px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        z-index: 99999 !important;
+        flex-direction: column;
+        padding: 8px 0;
+    }
+
+        /* ESTA CLASE LA ACTIVA EL JAVASCRIPT */
+        .profile-dropdown-content.show {
+            display: flex !important;
+        }
+
+    .dropdown-item {
+        padding: 12px 20px;
+        color: #475569;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: block;
+        transition: 0.2s;
+    }
+
+        .dropdown-item:hover {
+            background-color: #f1f5f9;
+            color: #6366f1;
+        }
+
+    .dropdown-header {
+        padding: 10px 20px 15px 20px;
+        background: #f8fafc;
+    }
+</style>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,16 +63,18 @@
 
     <nav class="navbar">
         <div class="container nav-flex">
-            <div class="logo">
+            <a href="@Url.Action("Index", "Home")" class="logo">
                 <div class="logo-icon blue-grad">🧠</div>
                 <span>EntrevistIA</span>
-            </div>
+            </a>
 
             <div class="nav-links">
-                <a href="@Url.Action("Index", "Home")">Inicio</a>
-
                 @if (Session["Nombre"] != null)
                 {
+                    bool esAdmin = Session["Perfil"] != null && Session["Perfil"].ToString() == "Admin";
+
+                    <a href="@(esAdmin ? Url.Action("InicioAdmin", "Home") : Url.Action("InicioCliente", "Home"))">Dashboard</a>
+
                     <div class="profile-menu-container">
                         <div class="user-nav-pill" onclick="toggleProfileMenu()">
                             <div class="nav-avatar">@Session["Nombre"].ToString().Substring(0, 2).ToUpper()</div>
@@ -36,17 +85,30 @@
                         <div id="profileDropdown" class="profile-dropdown-content">
                             <div class="dropdown-header">
                                 <strong>@Session["Nombre"]</strong>
-                                <span>@Session["Email"]</span>
+                                <span style="font-size: 0.75rem; color: #64748b; font-weight: 700;">
+                                    @(esAdmin ? "ADMINISTRADOR" : "ESTUDIANTE")
+                                </span>
                             </div>
                             <hr />
-                            <a href="@Url.Action("PerfilCliente", "Home")" class="dropdown-item">
-                                <span class="icon">👤</span> Mi Perfil
-                            </a>
-                            <a href="@Url.Action("InicioCliente", "Home")" class="dropdown-item">
-                                <span class="icon">📊</span> Dashboard
-                            </a>
+
+                            @if (esAdmin)
+                            {
+                                <a href="@Url.Action("InicioAdmin", "Home")" class="dropdown-item">
+                                    <span class="icon">⚙️</span> Centro de Comando
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <span class="icon">👥</span> Gestionar Usuarios
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("PerfilCliente", "Home")" class="dropdown-item">
+                                    <span class="icon">👤</span> Mi Perfil
+                                </a>
+                            }
+
                             <hr />
-                            <a href="javascript:void(0)" onclick="confirmLogout()" class="dropdown-item logout">
+                            <a href="@Url.Action("Logout", "Account")" class="dropdown-item logout">
                                 <span class="icon">🚪</span> Cerrar Sesión
                             </a>
                         </div>
@@ -54,7 +116,8 @@
                 }
                 else
                 {
-
+                    <a href="@Url.Action("Index", "Home")">Inicio</a>
+                    <a href="#">Metodología</a>
                     <a href="@Url.Action("Login", "Home")" class="btn-login">Iniciar Sesión</a>
                 }
             </div>

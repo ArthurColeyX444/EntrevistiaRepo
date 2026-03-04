@@ -1,113 +1,184 @@
-﻿@{
-    ViewBag.Title = "Comando de Administración - EntrevistIA";
+﻿@model IEnumerable<EntrevistiaWEB.Models.Cliente>
+@using System.Linq
+
+@{
+    ViewBag.Title = "Panel de Administración - EntrevistIA";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" href="~/Content/InicioAdmin.css">
+<link rel="stylesheet" href="~/Content/inicioadmin.css?v=4.0">
 
 <div class="admin-wrapper">
     <div class="container">
 
-        <header class="admin-header" data-aos="fade-down">
-            <div class="admin-title">
-                <span class="status-indicator">Sistema Activo</span>
-                <h1>Panel de <span class="gradient-text">Administración</span></h1>
-                <p>Gestión de infraestructura, usuarios y modelos de IA generativa.</p>
-            </div>
-            <div class="admin-profile">
-                <div class="admin-avatar">AD</div>
-                <div class="admin-meta">
-                    <strong>@Session["Nombre"]</strong>
-                    <span>Nivel: Superusuario</span>
-                </div>
-            </div>
+        <header style="margin-bottom: 40px;">
+            <span class="badge" style="background:#e0e7ff; color:#6366f1; padding:6px 15px; border-radius:50px; font-weight:700; font-size:0.8rem;">SISTEMA DE CONTROL</span>
+            <h1 style="font-size: 3rem; font-weight: 800; margin-top: 10px;">Panel de <span class="gradient-text">Administración</span></h1>
+            <p style="color: #64748b; font-size: 1.1rem;">Gestión centralizada de usuarios, modelos de IA y estadísticas.</p>
         </header>
 
-        <div class="global-metrics" data-aos="fade-up">
-            <div class="m-unit">
-                <span class="m-number">245</span>
-                <span class="m-desc">Clientes Totales</span>
+        <div class="admin-stats-grid">
+            <div class="stat-card">
+                <h4>Clientes Totales</h4>
+                <div class="value">@(Model != null ? Model.Count() : 0)</div>
+                <span class="trend">↑ 12% este mes</span>
             </div>
-            <div class="m-unit">
-                <span class="m-number">1.2k</span>
-                <span class="m-desc">Sesiones IA</span>
+            <div class="stat-card">
+                <h4>Sesiones IA</h4>
+                <div class="value">1.2k</div>
+                <span class="trend">↑ 24% actividad</span>
             </div>
-            <div class="m-unit">
-                <span class="m-number">78.5<small>%</small></span>
-                <span class="m-desc">Score Promedio</span>
+            <div class="stat-card">
+                <h4>Score Promedio</h4>
+                <div class="value">78.5%</div>
+                <span class="trend" style="color:#6366f1;">Nivel: Estable</span>
             </div>
-            <div class="m-unit">
-                <span class="m-number">89</span>
-                <span class="m-desc">Modelos Activos</span>
+            <div class="stat-card">
+                <h4>Modelos Activos</h4>
+                <div class="value">89</div>
+                <span class="trend">IA Generativa v4</span>
             </div>
         </div>
 
-        <div class="admin-grid">
-            <section class="admin-section" data-aos="fade-right" data-aos-delay="200">
-                <div class="section-top">
-                    <h3>Registros Recientes</h3>
-                    <button class="btn-text">Ver todos los clientes</button>
-                </div>
-
-                <div class="data-table">
-                    <div class="table-row">
-                        <div class="client-info">
-                            <strong>Ana García</strong>
-                            <span>ana@email.com</span>
-                        </div>
-                        <div class="client-status">Estudiante</div>
-                        <div class="client-date">9/1/2026</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="client-info">
-                            <strong>Carlos López</strong>
-                            <span>carlos@email.com</span>
-                        </div>
-                        <div class="client-status">Estudiante</div>
-                        <div class="client-date">8/1/2026</div>
-                    </div>
-                    <div class="table-row">
-                        <div class="client-info">
-                            <strong>María Silva</strong>
-                            <span>maria@email.com</span>
-                        </div>
-                        <div class="client-status">Estudiante</div>
-                        <div class="client-date">7/1/2026</div>
-                    </div>
-                </div>
-            </section>
-
-            <aside class="admin-sidebar" data-aos="fade-left" data-aos-delay="300">
-                <div class="control-panel">
-                    <h4>Estado de la IA</h4>
-                    <div class="ai-status-card">
-                        <div class="pulse-container">
-                            <div class="pulse-ring"></div>
-                            <div class="pulse-dot"></div>
-                        </div>
-                        <span>Motor de Procesamiento: <strong>Óptimo</strong></span>
-                    </div>
-
-                    <div class="popular-models">
-                        <h5>Entrevistas Populares</h5>
-                        <div class="model-stat">
-                            <span>Frontend React</span>
-                            <div class="progress-bar"><div class="bar" style="width: 85%"></div></div>
-                        </div>
-                        <div class="model-stat">
-                            <span>Recursos Humanos</span>
-                            <div class="progress-bar"><div class="bar" style="width: 65%"></div></div>
-                        </div>
-                        <div class="model-stat">
-                            <span>Backend Node.js</span>
-                            <div class="progress-bar"><div class="bar" style="width: 45%"></div></div>
-                        </div>
-                    </div>
-
-                    <button class="btn-primary-admin">Generar Nueva Plantilla</button>
-                </div>
-            </aside>
+        <div class="tabs-nav-container">
+            <button class="tab-link active" onclick="switchTab(event, 'resumen')">Resumen</button>
+            <button class="tab-link" onclick="switchTab(event, 'entrevistas')">Entrevistas</button>
+            <button class="tab-link" onclick="switchTab(event, 'preguntas')">Preguntas</button>
+            <button class="tab-link" onclick="switchTab(event, 'clientes')">Clientes</button>
         </div>
+
+        <div id="resumen" class="tab-pane active">
+            <div class="content-grid">
+                <div class="glass-card">
+                    <div class="card-head">
+                        <div>
+                            <h3>Clientes Recientes</h3>
+                            <p>Últimos registros vinculados</p>
+                        </div>
+                    </div>
+                    <div class="modern-list">
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var cliente in Model.Take(3))
+                            {
+                                <div class="modern-item">
+                                    <div class="item-info">
+                                        <strong>@cliente.nombresCliente</strong>
+                                        <span>@cliente.correoCliente</span>
+                                    </div>
+                                    <div class="item-side">
+                                        <span class="badge-pill">Cliente</span>
+                                        <span style="display:block; font-size:0.7rem; color:#94a3b8; margin-top:5px;">ID: @cliente.idCliente.Substring(0, 5)...</span>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="card-head">
+                        <div>
+                            <h3>Entrevistas Populares</h3>
+                            <p>Más utilizadas por usuarios</p>
+                        </div>
+                    </div>
+                    <div class="modern-list">
+                        <div class="modern-item">
+                            <div class="item-info">
+                                <strong>Frontend Developer React</strong>
+                                <span>Desarrollo Web</span>
+                            </div>
+                            <div class="item-side">
+                                <span class="score-text">85%</span>
+                                <span style="font-size:0.7rem; color:#94a3b8;">45 Sesiones</span>
+                            </div>
+                        </div>
+                        <div class="modern-item">
+                            <div class="item-info">
+                                <strong>HR Management</strong>
+                                <span>Recursos Humanos</span>
+                            </div>
+                            <div class="item-side">
+                                <span class="score-text">72%</span>
+                                <span style="font-size:0.7rem; color:#94a3b8;">32 Sesiones</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="clientes" class="tab-pane">
+            <div class="glass-card full">
+                <div class="card-head">
+                    <div>
+                        <h3>Directorio Completo de Usuarios</h3>
+                        <p>Visualización y gestión de la base de datos.</p>
+                    </div>
+                    <button class="btn-primary" style="padding:10px 20px; font-size:0.8rem; border-radius: 10px; cursor: pointer;">+ Nuevo Registro</button>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre Completo</th>
+                            <th>Correo Electrónico</th>
+                            <th>Identificación</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var cliente in Model)
+                            {
+                                <tr>
+                                    <td><strong>@cliente.nombresCliente</strong></td>
+                                    <td>@cliente.correoCliente</td>
+                                    <td><code style="background:#f1f5f9; padding:4px 8px; border-radius:5px; color:#475569;">@cliente.idCliente</code></td>
+                                    <td>
+                                        <button class="btn-action" title="Editar">✏️</button>
+                                        <button class="btn-action" title="Eliminar" style="color:#e11d48;">🗑️</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="entrevistas" class="tab-pane">
+            <div class="glass-card full" style="text-align:center; padding:100px;">
+                <h2 style="font-size:2rem; color:#cbd5e1;">🛠️ Módulo de Entrevistas</h2>
+                <p style="color:#64748b; margin-top: 10px;">Aquí podrás configurar los prompts de la IA y categorías.</p>
+            </div>
+        </div>
+
+        <div id="preguntas" class="tab-pane">
+            <div class="glass-card full" style="text-align:center; padding:100px;">
+                <h2 style="font-size:2rem; color:#cbd5e1;">📚 Banco de Preguntas</h2>
+                <p style="color:#64748b; margin-top: 10px;">Módulo en construcción...</p>
+            </div>
+        </div>
+
     </div>
 </div>
 
+@section scripts {
+    <script>
+        function switchTab(evt, tabId) {
+            // Ocultar todas las pestañas
+            const panes = document.querySelectorAll('.tab-pane');
+            panes.forEach(p => p.classList.remove('active'));
+
+            // Quitar clase active de los botones
+            const links = document.querySelectorAll('.tab-link');
+            links.forEach(l => l.classList.remove('active'));
+
+            // Mostrar pestaña y activar botón actual
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+}
