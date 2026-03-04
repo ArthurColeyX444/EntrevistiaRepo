@@ -35,6 +35,8 @@
     border-radius: 24px;
     box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
     text-align: center;
+    position: relative;
+    padding-top: 30px;
 }
 
 .auth-icon {
@@ -133,14 +135,6 @@
     grid-column: span 2;
 }
 
-.test-credentials {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px dashed #e2e8f0;
-    font-size: 0.8rem;
-    color: var(--text-gray);
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -161,13 +155,13 @@
     .login-info {
         display: none;
     }
-
-
 }
+
 .back-container {
     text-align: left;
     margin-bottom: 15px;
 }
+
 .link-back {
     color: var(--text-gray);
     text-decoration: none;
@@ -188,8 +182,54 @@
         font-size: 1.1rem;
     }
 
-/* Ajuste opcional para la tarjeta */
-.auth-card {
-    position: relative; /* Por si quieres posicionarlo absoluto después */
-    padding-top: 30px;
+/* ===== NUEVO GOOGLE ===== */
+
+.divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 25px 0;
 }
+
+    .divider::before,
+    .divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .divider span {
+        margin: 0 15px;
+        font-size: 0.85rem;
+        
+        white-space: nowrap;
+        text-align: center;
+        background: transparent !important; /* 🔥 elimina cualquier fondo */
+        padding: 0;
+    }
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    color: #111827;
+    transition: 0.3s;
+}
+
+    .btn-google img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .btn-google:hover {
+        background: #f9fafb;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }

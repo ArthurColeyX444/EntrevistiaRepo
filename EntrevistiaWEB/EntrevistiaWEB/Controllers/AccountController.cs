@@ -1,14 +1,16 @@
 ﻿using EntrevistiaWEB.Models;
 using MongoDB.Driver;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security;
+using System.Security.Claims; 
 
 namespace EntrevistiaWEB.Controllers
 {
-
     public class AccountController : Controller
     {
         private readonly IMongoCollection<Administrador> _admins;
@@ -16,7 +18,6 @@ namespace EntrevistiaWEB.Controllers
 
         public AccountController()
         {
-            // Cadena de conexion MongoBD Atlas
             var client = new MongoClient("mongodb+srv://arthurcoley:634990@entrevistia.jstrsql.mongodb.net/?retryWrites=true&w=majority&appName=entrevistia");
             var database = client.GetDatabase("EntrevistIA");
 
@@ -27,7 +28,6 @@ namespace EntrevistiaWEB.Controllers
         [HttpPost]
         public ActionResult Login(string usuario, string password)
         {
-            // 1. Buscar como Administrador
             var admin = _admins.Find(a => (a.correoAdmin == usuario || a.idAdmin == usuario)
                                      && a.contraseñaAdmin == password).FirstOrDefault();
 
@@ -38,7 +38,6 @@ namespace EntrevistiaWEB.Controllers
                 return RedirectToAction("InicioAdmin", "Home");
             }
 
-            // 2. Buscar como cliente
             var cliente = _clientes.Find(c => (c.correoCliente == usuario || c.idCliente == usuario)
                                          && c.contraseñaCliente == password).FirstOrDefault();
 
@@ -53,13 +52,11 @@ namespace EntrevistiaWEB.Controllers
             return View("~/Views/Home/Login.cshtml");
         }
 
-
         [HttpPost]
         public ActionResult RegisterCliente(Cliente nuevo)
         {
             try
             {
-                // 1. Validaciones de Formato (Servidor)
                 if (string.IsNullOrEmpty(nuevo.nombresCliente) || !System.Text.RegularExpressions.Regex.IsMatch(nuevo.nombresCliente, @"^[a-zA-Z\s]+$"))
                 {
                     ViewBag.ErrorRegistro = "El nombre solo debe contener letras.";
@@ -78,7 +75,6 @@ namespace EntrevistiaWEB.Controllers
                     return View("~/Views/Home/Login.cshtml");
                 }
 
-                // 2. Verificación de Duplicados en MongoDB
                 var correoExiste = _clientes.Find(c => c.correoCliente == nuevo.correoCliente).FirstOrDefault();
                 if (correoExiste != null)
                 {
@@ -92,9 +88,31 @@ namespace EntrevistiaWEB.Controllers
                     ViewBag.ErrorRegistro = "Esta identificación ya está registrada.";
                     return View("~/Views/Home/Login.cshtml");
                 }
+                try
+                {
+                    if (nuevo.InternalId == ObjectId.Empty)
+                        nuevo.InternalId = ObjectId.GenerateNewId();
+                    _clientes.InsertOne(nuevo);
+                    // Log the user in immediately after successful registration
+                    Session["Perfil"] = "Cliente";
+                    Session["Nombre"] = nuevo.nombresCliente;
 
-                // 3. Inserción Final
-                _clientes.InsertOne(nuevo);
+                    var auth = HttpContext.GetOwinContext().Authentication;
+                    var appIdentity = new ClaimsIdentity(new[] {
+                        new Claim(ClaimTypes.NameIdentifier, nuevo.idCliente ?? string.Empty),
+                        new Claim(ClaimTypes.Name, nuevo.nombresCliente ?? string.Empty),
+                        new Claim(ClaimTypes.Email, nuevo.correoCliente ?? string.Empty),
+                        new Claim(ClaimTypes.Role, "Cliente")
+                    }, "ApplicationCookie");
+
+                    auth.SignOut("ExternalCookie");
+                    auth.SignIn(new AuthenticationProperties { IsPersistent = false }, appIdentity);
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorRegistro = "Error al insertar en la base de datos: " + ex.Message;
+                    return View("~/Views/Home/Login.cshtml");
+                }
                 TempData["Success"] = "¡Registro exitoso! Ya puedes ingresar.";
                 return RedirectToAction("Login", "Home");
             }
@@ -105,16 +123,82 @@ namespace EntrevistiaWEB.Controllers
             }
         }
 
-        public ActionResult Logout()
+        
+
+        public void ExternalLogin(string provider)
         {
-            // Limpia todas las variables de sesión
-            Session.Clear();
-            Session.Abandon();
+            HttpContext.GetOwinContext().Authentication.Challenge(
+                new AuthenticationProperties
+                {
+                    RedirectUri = Url.Action("ExternalLoginCallback", "Account")
+                },
+                provider);
+        }
 
-            // Opcional: Elimina la cookie de autenticación si usas FormsAuthentication
-            // System.Web.Security.FormsAuthentication.SignOut();
+        public ActionResult ExternalLoginCallback()
+        {
+            var auth = HttpContext.GetOwinContext().Authentication;
 
-            return RedirectToAction("Index", "Home");
+            
+            var authResult = auth.AuthenticateAsync("ExternalCookie").Result;
+
+            if (authResult == null || authResult.Identity == null)
+                return RedirectToAction("Login", "Home");
+
+            var externalIdentity = (ClaimsIdentity)authResult.Identity;
+
+            
+            var email = externalIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email || c.Type == "email" || c.Type == "urn:google:email")?.Value;
+            var name = externalIdentity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name || c.Type == "name" || c.Type == "urn:google:name" || c.Type == "given_name" || c.Type == "urn:google:given_name")?.Value;
+
+            
+            if (!string.IsNullOrEmpty(email))
+            {
+                var existing = _clientes.Find(c => c.correoCliente == email).FirstOrDefault();
+                if (existing == null)
+                {
+                    var nuevo = new Cliente
+                    {
+                        idCliente = Guid.NewGuid().ToString(),
+                        correoCliente = email,
+                        nombresCliente = string.IsNullOrEmpty(name) ? email : name
+                    };
+
+                    try
+                    {
+                        if (nuevo.InternalId == ObjectId.Empty)
+                            nuevo.InternalId = ObjectId.GenerateNewId();
+
+                        _clientes.InsertOne(nuevo);
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                        TempData["ErrorDB"] = "No se pudo guardar el cliente en la base de datos: " + ex.Message;
+                    }
+                }
+
+                
+                Session["Perfil"] = "Cliente";
+                Session["Nombre"] = name ?? email;
+            }
+
+            
+            var appIdentity = new ClaimsIdentity(externalIdentity.Claims, "ApplicationCookie");
+            
+            if (!appIdentity.HasClaim(c => c.Type == ClaimTypes.Name))
+                appIdentity.AddClaim(new Claim(ClaimTypes.Name, name ?? email));
+            if (!appIdentity.HasClaim(c => c.Type == ClaimTypes.Email))
+                appIdentity.AddClaim(new Claim(ClaimTypes.Email, email));
+            if (!appIdentity.HasClaim(c => c.Type == ClaimTypes.Role))
+                appIdentity.AddClaim(new Claim(ClaimTypes.Role, "Cliente"));
+
+            
+            auth.SignOut("ExternalCookie");
+            auth.SignIn(new AuthenticationProperties { IsPersistent = false }, appIdentity);
+
+            
+            return RedirectToAction("InicioCliente", "Home");
         }
 
         // GET: Account
