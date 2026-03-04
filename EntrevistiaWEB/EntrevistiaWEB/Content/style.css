@@ -523,3 +523,328 @@ h1 {
         gap: 3rem;
     }
 }
+/* ===========================
+   OVERRIDES: How It Works + Modalidades
+   Pegar al final de style.css
+   =========================== */
+
+/* --- Centrar y mejorar cabecera de "Cómo funciona" --- */
+.how-it-works .section-header {
+    text-align: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
+
+/* --- Grid de pasos: 3 columnas, alineado como en la imagen 2 --- */
+.how-it-works .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+    margin-top: 1rem;
+}
+
+/* Cada item (centro el contenido y espaciado) */
+.how-it-works .step-item {
+    text-align: center;
+    padding: 1rem 1.25rem;
+}
+
+/* Círculos numerados estilo "badge" */
+.how-it-works .step-circle {
+    width: 86px;
+    height: 86px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #ffffff;
+    font-size: 1.6rem;
+    margin-bottom: 0.9rem;
+    box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+    /* Gradientes coherentes con tu paleta */
+    .how-it-works .step-circle.blue-grad {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
+    }
+
+    .how-it-works .step-circle.purple-grad {
+        background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
+    }
+
+    .how-it-works .step-circle.pink-grad {
+        background: linear-gradient(135deg, var(--accent-pink) 0%, #ff7aa3 100%);
+    }
+
+/* Hover sutil */
+.how-it-works .step-item:hover .step-circle {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 20px 45px rgba(99,102,241,0.12);
+}
+
+/* Titulares y texto del paso */
+.how-it-works .step-item h4 {
+    font-size: 1.06rem;
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+}
+
+.how-it-works .step-item p {
+    color: var(--text-gray);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 260px;
+}
+
+/* --- Modalidades: convertir el "glass-container" en 3 tarjetas blancas --- */
+/* Limitamos el override únicamente a la sección .modes para no romper otros usos de .glass-container */
+.modes .glass-container {
+    background: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+/* Tarjetas blancas estilo imagen 3 */
+.modes .mode-item {
+    background: var(--white);
+    color: var(--text-dark);
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(226,232,240,0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+}
+
+/* Icono dentro de círculo claro */
+.modes .mode-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+    background: rgba(99,102,241,0.06);
+    color: var(--primary);
+    font-weight: 800;
+    border: 1px solid rgba(99,102,241,0.08);
+    box-shadow: 0 8px 20px rgba(2,6,23,0.04);
+}
+
+/* Título y lista */
+.modes .mode-item h4 {
+    font-size: 1.12rem;
+    margin: 0.2rem 0 0.6rem 0;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+/* Lista de características: alineada y con bullets estilizados */
+.modes .mode-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.6rem 0 0 0;
+    color: var(--text-gray);
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+}
+
+    .modes .mode-list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+        .modes .mode-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 1.05rem;
+        }
+
+/* Pequeño ajuste visual para listas en móviles (centra contenido) */
+.modes .mode-item .mode-list {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Ajustes generales de cabeceras secciones (consistencia visual con la imagen 2) --- */
+.how-it-works .section-header h2,
+.modes .section-header h2 {
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+/* =======================
+   RESPONSIVE
+   ======================= */
+@media (max-width: 900px) {
+    /* Colapsar a 1 columna en pantallas pequeñas */
+    .how-it-works .steps-grid,
+    .modes .glass-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Mantener botón/áción centrada para héroe ya definido, aquí centramos los pasos */
+    .how-it-works .step-item {
+        padding: 1rem 0.6rem;
+    }
+
+    .how-it-works .step-circle {
+        margin: 0 auto 0.9rem auto;
+    }
+
+    /* Modalidades: tarjetas full-width y lista a la izquierda dentro de la tarjeta */
+    .modes .mode-item {
+        text-align: left;
+        padding: 1.6rem;
+        align-items: flex-start;
+    }
+
+    .modes .mode-icon {
+        margin-bottom: 0.6rem;
+    }
+
+    .modes .mode-list {
+        text-align: left;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .how-it-works .step-circle {
+        width: 68px;
+        height: 68px;
+        font-size: 1.2rem;
+    }
+
+    .how-it-works .step-item h4 {
+        font-size: 1rem;
+    }
+
+    .modes .mode-item {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    .modes .mode-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.3rem;
+    }
+}
+
+}
+
+/* =========================================
+   OVERRIDE SECCIÓN TEAM - ESTILO IMAGEN
+========================================= */
+
+.team {
+    background: #eef2f7;
+    padding: 100px 0;
+}
+
+    .team .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+        .team .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .team .section-header p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+        }
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.team-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+    .team-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+    }
+
+.team-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 999px;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: white;
+}
+
+    .team-avatar.blue-grad {
+        background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+    }
+
+    .team-avatar.purple-grad {
+        background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    }
+
+    .team-avatar.pink-grad {
+        background: linear-gradient(135deg, var(--accent-pink), #ff7aa3);
+    }
+
+.team-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.team-card p {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+}
+
+@media (max-width: 900px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+}
