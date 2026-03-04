@@ -4,9 +4,15 @@
 @{
     ViewBag.Title = "Panel de Administración - EntrevistIA";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Calculamos totales globales para las métricas
+    var listaAdmins = ViewBag.Admins as IEnumerable<EntrevistiaWEB.Models.Administrador>;
+    int totalAdmins = listaAdmins != null ? listaAdmins.Count() : 0;
+    int totalClientes = Model != null ? Model.Count() : 0;
+    int totalUsuarios = totalAdmins + totalClientes;
 }
 
-<link rel="stylesheet" href="~/Content/inicioadmin.css?v=4.0">
+<link rel="stylesheet" href="~/Content/inicioadmin.css?v=6.0">
 
 <div class="admin-wrapper">
     <div class="container">
@@ -19,8 +25,8 @@
 
         <div class="admin-stats-grid">
             <div class="stat-card">
-                <h4>Clientes Totales</h4>
-                <div class="value">@(Model != null ? Model.Count() : 0)</div>
+                <h4>Usuarios Totales</h4>
+                <div class="value">@totalUsuarios</div>
                 <span class="trend">↑ 12% este mes</span>
             </div>
             <div class="stat-card">
@@ -44,7 +50,7 @@
             <button class="tab-link active" onclick="switchTab(event, 'resumen')">Resumen</button>
             <button class="tab-link" onclick="switchTab(event, 'entrevistas')">Entrevistas</button>
             <button class="tab-link" onclick="switchTab(event, 'preguntas')">Preguntas</button>
-            <button class="tab-link" onclick="switchTab(event, 'clientes')">Clientes</button>
+            <button class="tab-link" onclick="switchTab(event, 'clientes')">Usuarios</button>
         </div>
 
         <div id="resumen" class="tab-pane active">
@@ -59,6 +65,7 @@
                     <div class="modern-list">
                         @if (Model != null && Model.Any())
                         {
+                            // Toma solo los 3 primeros de la lista para el resumen
                             foreach (var cliente in Model.Take(3))
                             {
                                 <div class="modern-item">
@@ -68,10 +75,16 @@
                                     </div>
                                     <div class="item-side">
                                         <span class="badge-pill">Cliente</span>
-                                        <span style="display:block; font-size:0.7rem; color:#94a3b8; margin-top:5px;">ID: @cliente.idCliente.Substring(0, 5)...</span>
+                                        <span style="display:block; font-size:0.7rem; color:#94a3b8; margin-top:5px;">
+                                            ID: @(cliente.idCliente != null && cliente.idCliente.Length > 5 ? cliente.idCliente.Substring(0, 5) + "..." : cliente.idCliente)
+                                        </span>
                                     </div>
                                 </div>
                             }
+                        }
+                        else
+                        {
+                            <p style="color: #64748b; text-align: center; font-size: 0.9rem;">No hay clientes registrados.</p>
                         }
                     </div>
                 </div>
@@ -110,41 +123,144 @@
         </div>
 
         <div id="clientes" class="tab-pane">
-            <div class="glass-card full">
-                <div class="card-head">
-                    <div>
-                        <h3>Directorio Completo de Usuarios</h3>
-                        <p>Visualización y gestión de la base de datos.</p>
+
+            <div class="search-section">
+                <div class="search-header">
+                    <div class="search-title">
+                        <div class="search-icon-box">🔍</div>
+                        <div>
+                            <h3 style="font-size:1.1rem; font-weight:800; color:#0f172a;">Búsqueda Avanzada de Usuarios</h3>
+                            <p style="font-size:0.85rem; color:#64748b;">Encuentra y filtra usuarios de manera eficiente</p>
+                        </div>
                     </div>
-                    <button class="btn-primary" style="padding:10px 20px; font-size:0.8rem; border-radius: 10px; cursor: pointer;">+ Nuevo Registro</button>
                 </div>
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Nombre Completo</th>
-                            <th>Correo Electrónico</th>
-                            <th>Identificación</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model != null)
-                        {
-                            foreach (var cliente in Model)
-                            {
-                                <tr>
-                                    <td><strong>@cliente.nombresCliente</strong></td>
-                                    <td>@cliente.correoCliente</td>
-                                    <td><code style="background:#f1f5f9; padding:4px 8px; border-radius:5px; color:#475569;">@cliente.idCliente</code></td>
-                                    <td>
-                                        <button class="btn-action" title="Editar">✏️</button>
-                                        <button class="btn-action" title="Eliminar" style="color:#e11d48;">🗑️</button>
-                                    </td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+
+                <div class="search-input-wrapper">
+                    <input type="text" id="searchInput" onkeyup="filtrarClientes()" placeholder="Buscar por nombre, email o rol..." />
+                </div>
+
+                <div class="filter-pills">
+                    <span>Filtros rápidos:</span>
+                    <button class="f-pill active" onclick="aplicarFiltro(this, 'todos')">👥 Todos</button>
+                    <button class="f-pill" onclick="aplicarFiltro(this, 'estudiante')">🎓 Estudiantes</button>
+                    <button class="f-pill" onclick="aplicarFiltro(this, 'admin')">⚙️ Admins</button>
+
+                    <span id="contadorResultados" style="margin-left:auto; background:#f1f5f9; padding:4px 10px; border-radius:10px; font-size:0.75rem; font-weight:700;">
+                        @totalUsuarios resultados
+                    </span>
+                </div>
+            </div>
+
+            <div class="client-mini-stats">
+                <div class="c-stat-card border-blue">
+                    <div class="c-stat-info">
+                        <span>Total Usuarios</span>
+                        <strong>@totalUsuarios</strong>
+                    </div>
+                    <div style="background:#eff6ff; padding:10px; border-radius:10px; color:#3b82f6;">👥</div>
+                </div>
+                <div class="c-stat-card border-green">
+                    <div class="c-stat-info">
+                        <span>Activos</span>
+                        <strong>@totalUsuarios</strong>
+                    </div>
+                    <div style="background:#f0fdf4; padding:10px; border-radius:10px; color:#10b981;">📈</div>
+                </div>
+                <div class="c-stat-card border-purple">
+                    <div class="c-stat-info">
+                        <span>Estudiantes</span>
+                        <strong>@totalClientes</strong>
+                    </div>
+                    <div style="background:#faf5ff; padding:10px; border-radius:10px; color:#a855f7;">🎯</div>
+                </div>
+                <div class="c-stat-card border-orange">
+                    <div class="c-stat-info">
+                        <span>Administradores</span>
+                        <strong>@totalAdmins</strong>
+                    </div>
+                    <div style="background:#fff7ed; padding:10px; border-radius:10px; color:#f97316;">⚙️</div>
+                </div>
+            </div>
+
+            <div class="client-list-container">
+                <div style="margin-bottom: 20px;">
+                    <h3 style="font-size:1.1rem; color:#0f172a;">Directorio de Usuarios</h3>
+                    <p style="font-size:0.85rem; color:#64748b;">Gestiona todos los perfiles registrados en la plataforma</p>
+                </div>
+
+                @if (listaAdmins != null && listaAdmins.Any())
+                {
+                    foreach (var admin in listaAdmins)
+                    {
+                        <div class="client-row">
+                            <div class="c-main">
+                                <div class="c-avatar" style="background: linear-gradient(135deg, #f97316, #ea580c);">
+                                    @(admin.nombreAdmin != null && admin.nombreAdmin.Length >= 2 ? admin.nombreAdmin.Substring(0, 2).ToUpper() : "AD")
+                                </div>
+                                <div class="c-details">
+                                    <strong>
+                                        @admin.nombreAdmin
+                                        <span class="badge-tag active">Activo</span>
+                                        <span class="badge-tag" style="background:#fff7ed; color:#c2410c;">Admin</span>
+                                    </strong>
+                                    <div class="contact-info">
+                                        <span>📧 @admin.correoAdmin</span>
+                                        <span>ID: @admin.idAdmin</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="c-metrics">
+                                <span style="font-size: 0.8rem; color: #f97316; font-weight: 700;">Súper Usuario (Acceso Total)</span>
+                            </div>
+
+                            <div class="c-actions">
+                                <button title="Protegido" style="cursor:not-allowed; opacity:0.3;">🔒</button>
+                            </div>
+                        </div>
+                    }
+                }
+
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var cliente in Model)
+                    {
+                        <div class="client-row">
+                            <div class="c-main">
+                                <div class="c-avatar">
+                                    @(cliente.nombresCliente != null && cliente.nombresCliente.Length >= 2 ? cliente.nombresCliente.Substring(0, 2).ToUpper() : "UD")
+                                </div>
+                                <div class="c-details">
+                                    <strong>
+                                        @cliente.nombresCliente
+                                        <span class="badge-tag active">Activo</span>
+                                        <span class="badge-tag student">Estudiante</span>
+                                    </strong>
+                                    <div class="contact-info">
+                                        <span>📧 @cliente.correoCliente</span>
+                                        <span>📞 @(cliente.telefonoCliente ?? "Sin teléfono")</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="c-metrics">
+                                <div class="metric-box blue"><small>Entrevistas</small><span>12</span></div>
+                                <div class="metric-box green"><small>Score</small><span>88%</span></div>
+                                <div class="metric-box purple"><small>Tiempo</small><span>6h</span></div>
+                            </div>
+
+                            <div class="c-actions">
+                                <button title="Ver detalles">👁️</button>
+                                <button title="Editar" onclick="abrirModal('@cliente.idCliente', '@cliente.nombresCliente', '@cliente.correoCliente', '@(cliente.telefonoCliente ?? "")', '@(cliente.edadCliente.ToString() ?? "")')">✏️</button>
+
+                                <form action="@Url.Action("EliminarCliente", "Home")" method="post" style="display:inline;" onsubmit="return confirm('¿Seguro que deseas eliminar a este estudiante? Esta acción no se puede deshacer.');">
+                                    <input type="hidden" name="idCliente" value="@cliente.idCliente" />
+                                    <button type="submit" title="Eliminar" style="color:#e11d48;">🗑️</button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
         </div>
 
@@ -162,23 +278,132 @@
             </div>
         </div>
 
-    </div>
-</div>
+    </div> <div id="modalEditar" class="modal-overlay">
+        <div class="modal-content new-modal">
+            <button type="button" class="modal-close-btn" onclick="cerrarModal()">✕</button>
 
-@section scripts {
+            <h3>📝 Editar Cliente</h3>
+            <p class="subtitle">Modifica la información del estudiante</p>
+
+            @using (Html.BeginForm("EditarCliente", "Home", FormMethod.Post))
+            {
+                <input type="hidden" id="editId" name="idCliente" />
+
+                <div class="modal-grid">
+                    <div class="new-input-group full-w">
+                        <label>Nombre Completo</label>
+                        <input type="text" id="editNombre" name="nombresCliente" required />
+                    </div>
+
+                    <div class="new-input-group full-w">
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="editCorreo" name="correoCliente" required />
+                    </div>
+
+                    <div class="new-input-group">
+                        <label>Teléfono</label>
+                        <input type="tel" id="editTelefono" name="telefonoCliente" />
+                    </div>
+
+                    <div class="new-input-group">
+                        <label>Edad</label>
+                        <input type="number" id="editEdad" name="edadCliente" />
+                    </div>
+                </div>
+
+                <div class="modal-divider">🔒 Cambiar Contraseña</div>
+
+                <div class="new-input-group full-w" style="margin-bottom:15px;">
+                    <label>Nueva Contraseña</label>
+                    <input type="password" name="nuevaContraseña" placeholder="Déjalo en blanco si no deseas cambiarla" />
+                </div>
+
+                <div class="new-modal-actions">
+                    <button type="button" class="btn-white-outline" onclick="cerrarModal()">Cancelar</button>
+                    <button type="submit" class="btn-black-solid">Guardar Cambios</button>
+                </div>
+            }
+        </div>
+    </div>
+
+</div> @section scripts {
     <script>
+        // --- 1. LÓGICA DE PESTAÑAS ---
         function switchTab(evt, tabId) {
-            // Ocultar todas las pestañas
             const panes = document.querySelectorAll('.tab-pane');
             panes.forEach(p => p.classList.remove('active'));
 
-            // Quitar clase active de los botones
             const links = document.querySelectorAll('.tab-link');
             links.forEach(l => l.classList.remove('active'));
 
-            // Mostrar pestaña y activar botón actual
             document.getElementById(tabId).classList.add('active');
             evt.currentTarget.classList.add('active');
+        }
+
+        // --- 2. LÓGICA DEL MODAL ---
+        function abrirModal(id, nombre, correo, telefono, edad) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editNombre').value = nombre;
+            document.getElementById('editCorreo').value = correo;
+            document.getElementById('editTelefono').value = telefono;
+            document.getElementById('editEdad').value = edad;
+
+            document.getElementById('modalEditar').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalEditar').style.display = 'none';
+        }
+
+        // Cierra el modal si el usuario hace clic afuera de la caja blanca
+        window.onclick = function (event) {
+            var modal = document.getElementById('modalEditar');
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
+
+        // --- 3. LÓGICA DE BÚSQUEDA Y FILTROS ---
+        let filtroActual = 'todos';
+
+        function aplicarFiltro(boton, tipoFiltro) {
+            // Manejar estilos visuales de los botones
+            document.querySelectorAll('.f-pill').forEach(btn => btn.classList.remove('active'));
+            boton.classList.add('active');
+
+            // Aplicar el filtro real
+            filtroActual = tipoFiltro;
+            filtrarClientes();
+        }
+
+        function filtrarClientes() {
+            const textoBusqueda = document.getElementById('searchInput').value.toLowerCase();
+            const filas = document.querySelectorAll('.client-row');
+            let contadorVisible = 0;
+
+            filas.forEach(fila => {
+                const contenidoFila = fila.innerText.toLowerCase();
+                const coincideTexto = contenidoFila.includes(textoBusqueda);
+
+                let coincideFiltro = false;
+                if (filtroActual === 'todos') {
+                    coincideFiltro = true;
+                } else if (filtroActual === 'estudiante' && contenidoFila.includes('estudiante')) {
+                    coincideFiltro = true;
+                } else if (filtroActual === 'admin' && contenidoFila.includes('admin')) {
+                    coincideFiltro = true;
+                }
+
+                if (coincideTexto && coincideFiltro) {
+                    fila.style.display = ''; // Se muestra
+                    contadorVisible++;
+                } else {
+                    fila.style.display = 'none'; // Se oculta
+                }
+            });
+
+            // Actualiza el texto de resultados a la derecha
+            document.getElementById('contadorResultados').innerText = contadorVisible + ' resultados';
         }
     </script>
 }
