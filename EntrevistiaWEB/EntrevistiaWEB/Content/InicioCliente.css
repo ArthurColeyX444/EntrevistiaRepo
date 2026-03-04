@@ -53,7 +53,7 @@
     font-weight: 800;
 }
 
-/* Métricas Tipográficas (Adiós tarjetas) */
+/* Métricas  (Adiós tarjetas) */
 .impact-metrics {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -242,7 +242,7 @@
         display: block;
     }
 
-/* Ítems del menú */
+/* Opciones del menú */
 .dropdown-item {
     display: flex;
     align-items: center;

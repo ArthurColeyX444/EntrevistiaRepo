@@ -52,7 +52,7 @@
     font-weight: 700;
 }
 
-/* Métricas Globales (Tipografía Gigante) */
+/* Métricas Globales  */
 .global-metrics {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -79,7 +79,7 @@
     text-transform: uppercase;
 }
 
-/* Tabla de Datos Minimalista */
+/* Tabla de Datos  */
 .data-table {
     margin-top: 30px;
 }
