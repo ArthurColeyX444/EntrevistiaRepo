@@ -44,6 +44,7 @@
                     <h3>Iniciar Sesión</h3>
                     <p class="tab-subtitle">Accede a tu cuenta para continuar</p>
 
+                    <!--CREDENCIAS INCORRECTAS LOGIN-->
                     @if (ViewBag.Error != null)
                     {
                         <div class="alert-error">
@@ -113,12 +114,16 @@
 
                         <div class="input-group">
                             <label>Edad</label>
-                            <input type="number" name="edadCliente" min="1" max="120" required>
+                            <input type="number" name="edadCliente" min="14" max="110" required>
                         </div>
 
                         <div class="input-group">
                             <label>Teléfono</label>
-                            <input type="tel" name="telefonoCliente" pattern="[0-9]+" required>
+                            <input type="text"
+                                   name="telefonoCliente"
+                                   pattern="[0-9]{10}"
+                                   maxlength="10"
+                                   required>
                         </div>
 
                         <div class="input-group full-width">
