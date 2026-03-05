@@ -283,6 +283,7 @@
     </Compile>
     <Compile Include="Models\Administrador.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Entrevista.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
