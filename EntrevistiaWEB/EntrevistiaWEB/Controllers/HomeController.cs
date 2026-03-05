@@ -13,24 +13,23 @@ namespace EntrevistiaWEB.Controllers
         // 1. Instanciamos AMBAS colecciones
         private readonly IMongoCollection<Cliente> _clientes;
         private readonly IMongoCollection<Administrador> _admins;
-
+        private readonly IMongoCollection<Entrevista> _entrevistas;
         public HomeController()
         {
             var client = new MongoClient("mongodb+srv://arthurcoley:634990@entrevistia.jstrsql.mongodb.net/?retryWrites=true&w=majority&appName=entrevistia");
             var database = client.GetDatabase("EntrevistIA");
 
             _clientes = database.GetCollection<Cliente>("Cliente");
-            // Conectamos la colección de Administradores
+            
             _admins = database.GetCollection<Administrador>("Administrador");
+            _entrevistas = database.GetCollection<Entrevista>("Entrevista");
         }
 
         [HttpPost]
-        
         public ActionResult EditarCliente(Cliente modificado, string nuevaContraseña)
         {
             try
             {
-                // Seguridad
                 if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Admin") return RedirectToAction("Login", "Home");
 
                 var actualizacion = Builders<Cliente>.Update
@@ -46,13 +45,12 @@ namespace EntrevistiaWEB.Controllers
 
                 _clientes.UpdateOne(c => c.idCliente == modificado.idCliente, actualizacion);
 
+                // TRUCO: Le decimos a la vista que active la pestaña clientes
+                TempData["ActiveTab"] = "clientes";
+
                 return RedirectToAction("InicioAdmin");
             }
-            catch (Exception)
-            {
-                // Si la base de datos falla, no cerramos la sesión, solo recargamos la página
-                return RedirectToAction("InicioAdmin");
-            }
+            catch (Exception) { return RedirectToAction("InicioAdmin"); }
         }
 
         [HttpPost]
@@ -60,22 +58,19 @@ namespace EntrevistiaWEB.Controllers
         {
             try
             {
-                // Seguridad
                 if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Admin") return RedirectToAction("Login", "Home");
 
-                // Validamos que el ID no esté vacío antes de enviarlo a MongoDB
                 if (!string.IsNullOrEmpty(idCliente))
                 {
                     _clientes.DeleteOne(c => c.idCliente == idCliente);
                 }
 
+                // TRUCO: Le decimos a la vista que active la pestaña clientes
+                TempData["ActiveTab"] = "clientes";
+
                 return RedirectToAction("InicioAdmin");
             }
-            catch (Exception)
-            {
-                // Evita que un error de conexión a Mongo destruya tu sesión
-                return RedirectToAction("InicioAdmin");
-            }
+            catch (Exception) { return RedirectToAction("InicioAdmin"); }
         }
         public ActionResult Index()
         {
@@ -128,6 +123,8 @@ namespace EntrevistiaWEB.Controllers
 
             // Pasamos los administradores usando ViewBag para que la vista los pueda leer
             ViewBag.Admins = _admins.Find(a => true).ToList();
+
+            ViewBag.Entrevistas = _entrevistas.Find(e => true).ToList();
 
             // PASAMOS LA LISTA DE CLIENTES AL MODELO PRINCIPAL
             return View(listaClientes);

@@ -10,9 +10,11 @@
     int totalAdmins = listaAdmins != null ? listaAdmins.Count() : 0;
     int totalClientes = Model != null ? Model.Count() : 0;
     int totalUsuarios = totalAdmins + totalClientes;
+
+    string tabActiva = TempData["ActiveTab"] as string ?? "resumen";
 }
 
-<link rel="stylesheet" href="~/Content/inicioadmin.css?v=6.0">
+<link rel="stylesheet" href="~/Content/inicioadmin.css?v=8.0">
 
 <div class="admin-wrapper">
     <div class="container">
@@ -47,13 +49,13 @@
         </div>
 
         <div class="tabs-nav-container">
-            <button class="tab-link active" onclick="switchTab(event, 'resumen')">Resumen</button>
-            <button class="tab-link" onclick="switchTab(event, 'entrevistas')">Entrevistas</button>
-            <button class="tab-link" onclick="switchTab(event, 'preguntas')">Preguntas</button>
-            <button class="tab-link" onclick="switchTab(event, 'clientes')">Usuarios</button>
+            <button class="tab-link @(tabActiva == "resumen" ? "active" : "")" onclick="switchTab(event, 'resumen')">Resumen</button>
+            <button class="tab-link @(tabActiva == "entrevistas" ? "active" : "")" onclick="switchTab(event, 'entrevistas')">Entrevistas</button>
+            <button class="tab-link @(tabActiva == "preguntas" ? "active" : "")" onclick="switchTab(event, 'preguntas')">Preguntas</button>
+            <button class="tab-link @(tabActiva == "clientes" ? "active" : "")" onclick="switchTab(event, 'clientes')">Usuarios</button>
         </div>
 
-        <div id="resumen" class="tab-pane active">
+        <div id="resumen" class="tab-pane @(tabActiva == "resumen" ? "active" : "")">
             <div class="content-grid">
                 <div class="glass-card">
                     <div class="card-head">
@@ -65,7 +67,6 @@
                     <div class="modern-list">
                         @if (Model != null && Model.Any())
                         {
-                            // Toma solo los 3 primeros de la lista para el resumen
                             foreach (var cliente in Model.Take(3))
                             {
                                 <div class="modern-item">
@@ -122,8 +123,7 @@
             </div>
         </div>
 
-        <div id="clientes" class="tab-pane">
-
+        <div id="clientes" class="tab-pane @(tabActiva == "clientes" ? "active" : "")">
             <div class="search-section">
                 <div class="search-header">
                     <div class="search-title">
@@ -242,17 +242,14 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="c-metrics">
                                 <div class="metric-box blue"><small>Entrevistas</small><span>12</span></div>
                                 <div class="metric-box green"><small>Score</small><span>88%</span></div>
                                 <div class="metric-box purple"><small>Tiempo</small><span>6h</span></div>
                             </div>
-
                             <div class="c-actions">
-                                <button title="Ver detalles">👁️</button>
+                                <button title="Ver detalles" onclick="abrirModalDetalles('@cliente.nombresCliente', '@cliente.correoCliente', '@(cliente.telefonoCliente ?? "")', '@cliente.edadCliente')">👁️</button>
                                 <button title="Editar" onclick="abrirModal('@cliente.idCliente', '@cliente.nombresCliente', '@cliente.correoCliente', '@(cliente.telefonoCliente ?? "")', '@(cliente.edadCliente.ToString() ?? "")')">✏️</button>
-
                                 <form action="@Url.Action("EliminarCliente", "Home")" method="post" style="display:inline;" onsubmit="return confirm('¿Seguro que deseas eliminar a este estudiante? Esta acción no se puede deshacer.');">
                                     <input type="hidden" name="idCliente" value="@cliente.idCliente" />
                                     <button type="submit" title="Eliminar" style="color:#e11d48;">🗑️</button>
@@ -264,24 +261,85 @@
             </div>
         </div>
 
-        <div id="entrevistas" class="tab-pane">
-            <div class="glass-card full" style="text-align:center; padding:100px;">
-                <h2 style="font-size:2rem; color:#cbd5e1;">🛠️ Módulo de Entrevistas</h2>
-                <p style="color:#64748b; margin-top: 10px;">Aquí podrás configurar los prompts de la IA y categorías.</p>
+        <div id="entrevistas" class="tab-pane @(tabActiva == "entrevistas" ? "active" : "")">
+
+            @{
+                // Recuperamos las entrevistas de la base de datos
+                var listaEntrevistas = ViewBag.Entrevistas as IEnumerable<EntrevistiaWEB.Models.Entrevista>;
+            }
+
+            <div class="card-head" style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="font-size:1.3rem; font-weight: 800; color:#0f172a;">Gestión de Entrevistas</h3>
+                </div>
+                <button class="btn-primary" style="background: #4f46e5; border-radius: 10px; padding: 10px 20px; color: white; border: none; font-weight: 700; cursor: pointer;" onclick="abrirModalEntrevista()">
+                    + Nueva Entrevista
+                </button>
+            </div>
+
+            <div class="client-list-container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span style="font-weight: 700; color: #64748b;">
+                        Lista de Entrevistas
+                        <span style="background:#f1f5f9; padding:2px 8px; border-radius:6px; font-size:0.75rem; margin-left:5px;">@(listaEntrevistas != null ? listaEntrevistas.Count() : 0)</span>
+                    </span>
+                    <div class="search-input-wrapper" style="width: 300px; margin-bottom: 0;">
+                        <input type="text" placeholder="🔍 Buscar entrevistas..." style="padding: 10px 15px; border-radius: 10px; border: 1px solid #e2e8f0; width: 100%; font-size: 0.85rem; background: #f8fafc;">
+                    </div>
+                </div>
+
+                @if (listaEntrevistas != null && listaEntrevistas.Any())
+                {
+                    foreach (var entrevista in listaEntrevistas)
+                    {
+                        <div class="client-row" style="align-items: flex-start;">
+                            <div class="c-main" style="flex: 3;">
+                                <div class="c-details">
+                                    <strong style="font-size: 1.1rem; color: #0f172a; margin-bottom: 4px; display: block;">@entrevista.tituloEntrevista</strong>
+
+                                    <div style="display: flex; gap: 10px; align-items: center;">
+                                        <span style="color: #64748b; font-size: 0.85rem; font-weight:600;">@entrevista.categoria</span>
+                                        <span style="background: #e0e7ff; color: #4f46e5; font-size: 0.65rem; padding: 3px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase;">@entrevista.nivel</span>
+                                    </div>
+
+                                    <div style="display: flex; gap: 20px; margin-top: 15px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">
+                                        <span>⏱️ @entrevista.duracion min</span>
+                                        <span>🗣️ @entrevista.modalidad</span>
+                                        <span>🏷️ @entrevista.tipo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="c-actions" style="margin-top: 5px;">
+                                <button title="Ver detalles">👁️</button>
+                                <button title="Editar">✏️</button>
+                                <button title="Eliminar" style="color:#e11d48;">🗑️</button>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="empty-state-box" style="margin-top: 20px; width: 100%;">
+                        <div class="empty-state-icon">📂</div>
+                        <div class="empty-state-title">No hay entrevistas creadas</div>
+                        <div class="empty-state-desc">Haz clic en "+ Nueva Entrevista" para comenzar a configurar tu catálogo.</div>
+                    </div>
+                }
+
             </div>
         </div>
 
-        <div id="preguntas" class="tab-pane">
+        <div id="preguntas" class="tab-pane @(tabActiva == "preguntas" ? "active" : "")">
             <div class="glass-card full" style="text-align:center; padding:100px;">
                 <h2 style="font-size:2rem; color:#cbd5e1;">📚 Banco de Preguntas</h2>
                 <p style="color:#64748b; margin-top: 10px;">Módulo en construcción...</p>
             </div>
         </div>
+    </div>
 
-    </div> <div id="modalEditar" class="modal-overlay">
+    <div id="modalEditar" class="modal-overlay">
         <div class="modal-content new-modal">
             <button type="button" class="modal-close-btn" onclick="cerrarModal()">✕</button>
-
             <h3>📝 Editar Cliente</h3>
             <p class="subtitle">Modifica la información del estudiante</p>
 
@@ -294,17 +352,14 @@
                         <label>Nombre Completo</label>
                         <input type="text" id="editNombre" name="nombresCliente" required />
                     </div>
-
                     <div class="new-input-group full-w">
                         <label>Correo Electrónico</label>
                         <input type="email" id="editCorreo" name="correoCliente" required />
                     </div>
-
                     <div class="new-input-group">
                         <label>Teléfono</label>
                         <input type="tel" id="editTelefono" name="telefonoCliente" />
                     </div>
-
                     <div class="new-input-group">
                         <label>Edad</label>
                         <input type="number" id="editEdad" name="edadCliente" />
@@ -326,7 +381,129 @@
         </div>
     </div>
 
-</div> @section scripts {
+    <div id="modalEntrevista" class="modal-overlay">
+        <div class="modal-content new-modal" style="max-width: 550px;">
+            <button type="button" class="modal-close-btn" onclick="cerrarModalEntrevista()">✕</button>
+
+            <h3><span style="color:#4f46e5; margin-right:5px;">+</span> Crear Nueva Entrevista</h3>
+            <p class="subtitle" style="margin-bottom: 25px;">Configura los detalles y preguntas para la nueva entrevista</p>
+
+            <form>
+                <div style="color: #4f46e5; font-weight: 800; font-size: 0.95rem; margin-bottom: 15px;">Información Básica</div>
+
+                <div class="new-input-group full-w" style="margin-bottom: 15px;">
+                    <label>Título de la Entrevista</label>
+                    <input type="text" placeholder="Ej: Entrevista Frontend React" required />
+                </div>
+
+                <div class="new-input-group full-w" style="margin-bottom: 15px;">
+                    <label>Descripción</label>
+                    <textarea placeholder="Breve descripción de la entrevista"></textarea>
+                </div>
+
+                <div class="modal-grid" style="margin-bottom: 15px;">
+                    <div class="new-input-group">
+                        <label>Categoría</label>
+                        <select>
+                            <option>Selecciona una categoría</option>
+                            <option>Desarrollo Web</option>
+                            <option>Recursos Humanos</option>
+                            <option>Ventas</option>
+                        </select>
+                    </div>
+                    <div class="new-input-group">
+                        <label>Tipo</label>
+                        <select>
+                            <option>Técnica</option>
+                            <option>Habilidades Blandas</option>
+                            <option>Psicométrica</option>
+                        </select>
+                    </div>
+                    <div class="new-input-group">
+                        <label>Nivel</label>
+                        <select>
+                            <option>Junior</option>
+                            <option>Semi-Senior</option>
+                            <option>Senior</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="new-input-group">
+                            <label>Modalidad</label>
+                            <select><option>Texto</option><option>Voz</option></select>
+                        </div>
+                        <div class="new-input-group">
+                            <label>Duración <span style="font-weight:normal;color:#94a3b8;">(min)</span></label>
+                            <input type="number" value="30" />
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; margin-top: 30px;">
+                    <div style="color: #4f46e5; font-weight: 800; font-size: 0.95rem;">Preguntas (0)</div>
+                    <button type="button" style="background: #4f46e5; border-radius: 8px; padding: 6px 12px; font-size: 0.8rem; color: white; border: none; font-weight: 700; cursor: pointer;">
+                        + Agregar Pregunta
+                    </button>
+                </div>
+
+                <div class="empty-state-box">
+                    <div class="empty-state-icon">📄</div>
+                    <div class="empty-state-title">No hay preguntas agregadas</div>
+                    <div class="empty-state-desc">Haz clic en "Agregar Pregunta" para comenzar</div>
+                </div>
+
+                <div class="new-modal-actions">
+                    <button type="button" class="btn-white-outline" onclick="cerrarModalEntrevista()">Cancelar</button>
+                    <button type="button" class="btn-black-solid" style="background: #818cf8; border: none;">+ Crear Entrevista</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalDetalles" class="modal-overlay">
+        <div class="modal-content new-modal" style="max-width: 500px; padding: 40px;">
+            <button type="button" class="modal-close-btn" onclick="cerrarModalDetalles()" style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 2px 8px;">✕</button>
+
+            <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Detalles del Cliente</h3>
+            <p class="subtitle" style="margin-bottom: 30px;">Información completa del cliente seleccionado</p>
+
+            <div class="modal-details-header">
+                <div class="md-avatar" id="detAvatar">MS</div>
+                <div class="md-name-section">
+                    <h2 id="detNombre">María Silva</h2>
+                    <p id="detCorreo">maria.silva@email.com</p>
+                    <span class="badge-active-lg">Activo</span>
+                </div>
+            </div>
+
+            <div class="md-grid">
+                <div>
+                    <h4 class="md-section-title">Información Personal</h4>
+                    <ul class="md-info-list">
+                        <li><i>👤</i> <span id="detUsername">@("@")maria_silva</span></li>
+                        <li><i>📞</i> <span id="detTelefono">+57 300 345 6789</span></li>
+                        <li><i>📅</i> <span id="detEdad">23 años</span></li>
+                    </ul>
+                    <span class="md-badge-student">Student</span>
+                </div>
+
+                <div>
+                    <h4 class="md-section-title">Estadísticas</h4>
+                    <ul class="md-stats-list">
+                        <li><span>Entrevistas Completadas</span> <strong id="detStats1">15</strong></li>
+                        <li><span>Score Promedio</span> <strong id="detStats2">92%</strong></li>
+                        <li><span>Tiempo Total</span> <strong id="detStats3">8h</strong></li>
+                        <li><span>Registrado</span> <strong id="detStats4">7 ene 2025</strong></li>
+                        <li><span>Última Actividad</span> <strong id="detStats5">12 ene 2025</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
     <script>
         // --- 1. LÓGICA DE PESTAÑAS ---
         function switchTab(evt, tabId) {
@@ -340,7 +517,7 @@
             evt.currentTarget.classList.add('active');
         }
 
-        // --- 2. LÓGICA DEL MODAL ---
+        // --- 2. LÓGICA DEL MODAL EDITAR USUARIO ---
         function abrirModal(id, nombre, correo, telefono, edad) {
             document.getElementById('editId').value = id;
             document.getElementById('editNombre').value = nombre;
@@ -355,23 +532,75 @@
             document.getElementById('modalEditar').style.display = 'none';
         }
 
-        // Cierra el modal si el usuario hace clic afuera de la caja blanca
+        // --- 3. LÓGICA DEL MODAL NUEVA ENTREVISTA ---
+        function abrirModalEntrevista() {
+            document.getElementById('modalEntrevista').style.display = 'flex';
+        }
+
+        function cerrarModalEntrevista() {
+            document.getElementById('modalEntrevista').style.display = 'none';
+        }
+
+        // --- 4. LÓGICA DEL MODAL VER DETALLES ---
+        function abrirModalDetalles(nombre, correo, telefono, edad) {
+            document.getElementById('detNombre').innerText = nombre;
+            document.getElementById('detCorreo').innerText = correo;
+
+            let iniciales = "UD";
+            if (nombre && nombre.length >= 2) {
+                let partes = nombre.trim().split(' ');
+                if (partes.length >= 2) {
+                    iniciales = partes[0].charAt(0) + partes[1].charAt(0);
+                } else {
+                    iniciales = nombre.substring(0, 2);
+                }
+            }
+            document.getElementById('detAvatar').innerText = iniciales.toUpperCase();
+
+            // Uso seguro del arroba para Razor
+            let username = "@@" + correo.split('@@')[0].toLowerCase();
+            document.getElementById('detUsername').innerText = username;
+
+            document.getElementById('detTelefono').innerText = telefono && telefono.trim() !== '' ? telefono : 'No registrado';
+            document.getElementById('detEdad').innerText = edad && edad !== '0' && edad.trim() !== '' ? edad + ' años' : 'No registrada';
+
+            document.getElementById('detStats1').innerText = "0";
+            document.getElementById('detStats2').innerText = "0%";
+            document.getElementById('detStats3').innerText = "0h";
+            document.getElementById('detStats4').innerText = "N/A";
+            document.getElementById('detStats5').innerText = "N/A";
+
+            document.getElementById('modalDetalles').style.display = 'flex';
+        }
+
+        function cerrarModalDetalles() {
+            document.getElementById('modalDetalles').style.display = 'none';
+        }
+
+        // --- 5. CERRAR MODALES AL HACER CLIC AFUERA ---
         window.onclick = function (event) {
-            var modal = document.getElementById('modalEditar');
-            if (event.target == modal) {
+            var modal1 = document.getElementById('modalEditar');
+            var modal2 = document.getElementById('modalEntrevista');
+            var modal3 = document.getElementById('modalDetalles');
+
+            if (event.target == modal1) {
                 cerrarModal();
+            }
+            if (event.target == modal2) {
+                cerrarModalEntrevista();
+            }
+            if (event.target == modal3) {
+                cerrarModalDetalles();
             }
         }
 
-        // --- 3. LÓGICA DE BÚSQUEDA Y FILTROS ---
+        // --- 6. LÓGICA DE BÚSQUEDA Y FILTROS ---
         let filtroActual = 'todos';
 
         function aplicarFiltro(boton, tipoFiltro) {
-            // Manejar estilos visuales de los botones
             document.querySelectorAll('.f-pill').forEach(btn => btn.classList.remove('active'));
             boton.classList.add('active');
 
-            // Aplicar el filtro real
             filtroActual = tipoFiltro;
             filtrarClientes();
         }
@@ -395,14 +624,13 @@
                 }
 
                 if (coincideTexto && coincideFiltro) {
-                    fila.style.display = ''; // Se muestra
+                    fila.style.display = '';
                     contadorVisible++;
                 } else {
-                    fila.style.display = 'none'; // Se oculta
+                    fila.style.display = 'none';
                 }
             });
 
-            // Actualiza el texto de resultados a la derecha
             document.getElementById('contadorResultados').innerText = contadorVisible + ' resultados';
         }
     </script>
