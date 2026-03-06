@@ -1,14 +1,15 @@
-﻿@{
+﻿@model IEnumerable<EntrevistiaWEB.Models.Entrevista>
+
+@{
     ViewBag.Title = "Panel de Control - EntrevistIA";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" href="~/Content/InicioCliente.css">
+<link rel="stylesheet" href="~/Content/InicioCliente.css?v=2.1">
 
 <div class="dashboard-wrapper">
     <div class="container">
 
-        <!-- HEADER -->
         <header class="db-header">
             <div>
                 <span class="user-badge">Panel de Candidato</span>
@@ -17,191 +18,155 @@
             </div>
         </header>
 
-        <!-- METRICAS -->
         <div class="impact-metrics">
-
             <div class="metric-block">
                 <span class="m-value">85<small>%</small></span>
                 <span class="m-label">Puntaje Global</span>
             </div>
-
             <div class="metric-block">
                 <span class="m-value">03</span>
                 <span class="m-label">Simulaciones</span>
             </div>
-
             <div class="metric-block">
                 <span class="m-value">95<small>m</small></span>
                 <span class="m-label">Tiempo de Práctica</span>
             </div>
-
         </div>
 
-        <!-- GRID PRINCIPAL -->
         <div class="db-grid">
 
-            <!-- IZQUIERDA -->
             <main class="db-main">
 
-                <!-- ACCIONES RAPIDAS -->
                 <div class="quick-actions-card">
-
                     <h3>Acciones Rápidas</h3>
                     <p>Comienza una nueva entrevista o continúa con tu progreso</p>
-
                     <div class="quick-buttons">
-
                         <button class="btn-primary">
                             🔍 Buscar Entrevistas
                         </button>
-
                         <button class="btn-secondary">
                             🕘 Ver Historial
                         </button>
-
                     </div>
-
                 </div>
 
-
-                <!-- ENTREVISTAS RECOMENDADAS -->
                 <div class="recommended-card">
-
-                    <h3>Entrevistas Recomendadas</h3>
-                    <p>Basado en tu perfil y rendimiento anterior</p>
-
-                    <div class="interview-item">
-
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                         <div>
-                            <strong>Entrevista Técnica Frontend</strong>
-                            <p>Preguntas sobre React, JavaScript y CSS</p>
-
-                            <div class="tags">
-                                <span class="tag blue">mid</span>
-                                <span class="tag orange">technical</span>
-                                <span class="tag">8 preguntas</span>
-                                <span class="tag">30 min</span>
-                            </div>
+                            <h3 style="margin: 0;">Entrevistas Disponibles</h3>
+                            <p style="margin: 0; font-size: 0.9rem;">Catálogo oficial de simulaciones</p>
                         </div>
-
-                        <button class="btn-start">▶ Iniciar</button>
-
+                        <span style="background:#f1f5f9; padding:5px 12px; border-radius:20px; font-weight:bold; font-size:0.85rem; color:#475569;">
+                            @(Model != null ? Model.Count() : 0) Totales
+                        </span>
                     </div>
 
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var entrevista in Model)
+                        {
+                            <div class="interview-item">
+                                <div>
+                                    <strong style="font-size: 1.1rem; color: #0f172a;">@entrevista.tituloEntrevista</strong>
 
-                    <div class="interview-item">
+                                    <p style="color: #64748b; font-size: 0.9rem; margin: 4px 0 8px 0;">
+                                        @(string.IsNullOrEmpty(entrevista.descripcion) ? "Entrevista para validar tus conocimientos en esta área." : entrevista.descripcion)
+                                    </p>
 
-                        <div>
-                            <strong>Entrevista de RRHH</strong>
-                            <p>Preguntas generales sobre experiencia laboral</p>
+                                    <div class="tags">
+                                        @{
+                                            string colorNivel = "blue";
+                                            if (entrevista.nivel == "Junior") { colorNivel = "green"; }
+                                            else if (entrevista.nivel == "Semi-Senior") { colorNivel = "orange"; }
+                                            else if (entrevista.nivel == "Senior") { colorNivel = "purple"; }
+                                        }
+                                        <span class="tag @colorNivel">@entrevista.nivel</span>
 
-                            <div class="tags">
-                                <span class="tag green">junior</span>
-                                <span class="tag blue">hr</span>
-                                <span class="tag">6 preguntas</span>
-                                <span class="tag">25 min</span>
+                                        <span class="tag">@entrevista.categoria</span>
+                                        <span class="tag pink">@entrevista.tipo</span>
+                                        <span class="tag">@entrevista.duracion min</span>
+                                        <span class="tag">@entrevista.modalidad</span>
+                                    </div>
+                                </div>
+                                <button class="btn-start" onclick="iniciarEntrevista('@entrevista.idEntrevista')">▶ Iniciar</button>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div style="text-align: center; padding: 40px 20px; border: 2px dashed #e2e8f0; border-radius: 12px; background: #f8fafc; margin-top: 15px;">
+                            <span style="font-size: 2.5rem; display: block; margin-bottom: 10px;">📋</span>
+                            <h4 style="color: #0f172a; margin-bottom: 5px;">Aún no hay entrevistas</h4>
+                            <p style="color: #64748b; font-size: 0.9rem;">Pronto añadiremos nuevas simulaciones para ti.</p>
                         </div>
-
-                        <button class="btn-start">▶ Iniciar</button>
-
-                    </div>
-
-
-                    <div class="interview-item">
-
-                        <div>
-                            <strong>Entrevista Comportamental</strong>
-                            <p>Situaciones hipotéticas y resolución de problemas</p>
-
-                            <div class="tags">
-                                <span class="tag purple">senior</span>
-                                <span class="tag pink">behavioral</span>
-                                <span class="tag">10 preguntas</span>
-                                <span class="tag">40 min</span>
-                            </div>
-                        </div>
-
-                        <button class="btn-start">▶ Iniciar</button>
-
-                    </div>
-
+                    }
                 </div>
 
             </main>
 
-
-            <!-- DERECHA -->
             <aside class="db-sidebar">
 
-                <!-- PROGRESO -->
                 <div class="sidebar-card">
-
-                    <h4>Tu Progreso</h4>
-
+                    <h4 style="margin-bottom: 15px;">Tu Progreso</h4>
                     <div class="progress-bar">
                         <div class="progress" style="width:85%"></div>
                     </div>
-
                     <div class="progress-info">
                         <span>Puntaje General</span>
                         <strong>85%</strong>
                     </div>
-
                     <div class="progress-info">
                         <span>Entrevistas Completadas</span>
                         <strong>3 / 10</strong>
                     </div>
-
-                    <div class="progress-info">
+                    <div class="progress-info" style="margin-bottom: 0;">
                         <span>Objetivo Mensual</span>
                         <strong>85%</strong>
                     </div>
-
                 </div>
 
-
-                <!-- ACTIVIDAD RECIENTE -->
                 <div class="sidebar-card">
-
-                    <h4>Actividad Reciente</h4>
-
+                    <h4 style="margin-bottom: 15px;">Actividad Reciente</h4>
                     <div class="activity-item">
-                        <span class="dot blue"></span>
-                        Entrevista Técnica Backend
-                        <strong>85%</strong>
+                        <div style="display:flex; align-items:center; font-size:0.9rem; color:#475569;">
+                            <span class="dot blue"></span> Entrevista Técnica Backend
+                        </div>
+                        <strong style="color:#0f172a;">85%</strong>
                     </div>
-
                     <div class="activity-item">
-                        <span class="dot green"></span>
-                        Entrevista de RRHH
-                        <strong>92%</strong>
+                        <div style="display:flex; align-items:center; font-size:0.9rem; color:#475569;">
+                            <span class="dot green"></span> Entrevista de RRHH
+                        </div>
+                        <strong style="color:#0f172a;">92%</strong>
                     </div>
-
-                    <div class="activity-item">
-                        <span class="dot blue"></span>
-                        Entrevista Comportamental
-                        <strong>78%</strong>
+                    <div class="activity-item" style="margin-bottom: 0;">
+                        <div style="display:flex; align-items:center; font-size:0.9rem; color:#475569;">
+                            <span class="dot purple"></span> Comportamental
+                        </div>
+                        <strong style="color:#0f172a;">78%</strong>
                     </div>
-
                 </div>
 
-
-                <!-- TIP DEL DIA -->
-                <div class="sidebar-card">
-
-                    <h4>Tip del Día</h4>
-
-                    <p>
-                        💡 Practica la regla <strong>STAR</strong>
-                        (Situación, Tarea, Acción, Resultado) para responder preguntas comportamentales de forma estructurada.
+                <div class="sidebar-card" style="background: linear-gradient(135deg, #4f46e5, #818cf8); color: white;">
+                    <h4 style="margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        💡 Tip del Día
+                    </h4>
+                    <p style="font-size: 0.9rem; line-height: 1.5; margin: 0; opacity: 0.9;">
+                        Practica la regla <strong>STAR</strong> (Situación, Tarea, Acción, Resultado) para responder preguntas comportamentales de forma estructurada.
                     </p>
-
                 </div>
 
             </aside>
-
         </div>
-
     </div>
 </div>
+
+@section scripts {
+    <script>
+        function iniciarEntrevista(id) {
+            // Aquí en el futuro redireccionaremos a la pantalla de la IA
+            alert("Iniciando entrevista con ID: " + id);
+            // window.location.href = '/Entrevista/Simulacion?id=' + id;
+        }
+    </script>
+}

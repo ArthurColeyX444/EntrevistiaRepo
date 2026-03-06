@@ -91,15 +91,23 @@ namespace EntrevistiaWEB.Controllers
 
         public ActionResult InicioCliente()
         {
-            // Validación de seguridad básica: mandarlo al login
             if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Cliente")
             {
                 return RedirectToAction("Login", "Home");
             }
 
-            return View();
-        }
+            // Traemos las entrevistas
+            List<Entrevista> entrevistasDisponibles = _entrevistas.Find(e => true).ToList();
 
+            // Si por alguna razón la BD devuelve null, creamos una lista vacía para que no de error
+            if (entrevistasDisponibles == null)
+            {
+                entrevistasDisponibles = new List<Entrevista>();
+            }
+
+            // Pasamos la lista a la vista
+            return View(entrevistasDisponibles);
+        }
         public ActionResult PerfilCliente()
         {
             if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Cliente")
