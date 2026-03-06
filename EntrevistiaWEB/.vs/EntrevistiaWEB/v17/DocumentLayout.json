@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\Pruebas\\EntrevistiaRepo\\EntrevistiaWEB\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Desktop\\Pruebas\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\views\\home\\inicioadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\user\\desktop\\pruebas\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\views\\home\\inicioadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\inicioadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -19,7 +19,7 @@
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\content\\iniciocliente.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|c:\\users\\user\\desktop\\pruebas\\entrevistiarepo\\entrevistiaweb\\entrevistiaweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|C:\\Users\\User\\Desktop\\Pruebas\\EntrevistiaRepo\\EntrevistiaWEB\\entrevistiaweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{97E94A61-2736-4AAE-ABD7-04E30F923CC4}|EntrevistiaWEB\\EntrevistiaWEB.csproj|solutionrelative:entrevistiaweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -106,8 +106,7 @@
               "RelativeToolTip": "EntrevistiaWEB\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAHgAAAAAAAAAAAAAAHgAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-25T23:23:46.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-25T23:23:46.337Z"
             },
             {
               "$type": "Document",
@@ -117,7 +116,7 @@
               "RelativeDocumentMoniker": "EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
               "ToolTip": "C:\\Users\\User\\Desktop\\Pruebas\\EntrevistiaRepo\\EntrevistiaWEB\\EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
               "RelativeToolTip": "EntrevistiaWEB\\Views\\Home\\InicioAdmin.cshtml",
-              "ViewState": "AgIAAF8CAAAAAAAAAAAkwIACAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAE0CAAAAAAAAAAAkwG4CAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-02-26T02:36:38.546Z",
               "EditorCaption": ""
@@ -168,8 +167,7 @@
               "RelativeToolTip": "EntrevistiaWEB\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAEIAAAAAAAAAAAAowG0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-25T23:58:36.177Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-25T23:58:36.177Z"
             },
             {
               "$type": "Document",
@@ -193,8 +191,7 @@
               "RelativeToolTip": "EntrevistiaWEB\\Content\\InicioCliente.css",
               "ViewState": "AgIAAIEAAAAAAAAAAAAkwIEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-26T02:14:33.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-26T02:14:33.747Z"
             },
             {
               "$type": "Document",
@@ -206,8 +203,7 @@
               "RelativeToolTip": "EntrevistiaWEB\\Views\\Home\\InicioCliente.cshtml",
               "ViewState": "AgIAAHYAAAAAAAAAAAAqwI4AAABoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-26T01:58:17.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-26T01:58:17.514Z"
             },
             {
               "$type": "Document",
