@@ -432,12 +432,22 @@
 
             <div class="new-input-group full-w" style="margin-bottom: 15px;">
                 <label style="font-weight: 600;">Título de la Entrevista</label>
-                <input type="text" name="tituloEntrevista" placeholder="Ej: Entrevista Frontend React" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                <input type="text"
+                       name="tituloEntrevista"
+                       placeholder="Ej: Entrevista Frontend React"
+                       pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"
+                       title="Solo se permiten letras"
+                       oninput="this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúñÑ\s]/g,'')"
+                       required
+                       style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
             </div>
 
             <div class="new-input-group full-w" style="margin-bottom: 15px;">
                 <label style="font-weight: 600;">Descripción</label>
-                <textarea name="descripcion" placeholder="Breve descripción de la entrevista" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;"></textarea>
+                <textarea name="descripcion"
+                          placeholder="Breve descripción de la entrevista"
+                          oninput="this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúñÑ\s]/g,'')"
+                          style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;"></textarea>
             </div>
 
             <div class="modal-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
@@ -472,8 +482,15 @@
                         <select name="modalidad" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;"><option value="Texto">Texto</option><option value="Voz">Voz</option></select>
                     </div>
                     <div class="new-input-group">
-                        <label style="font-weight: 600;">Dur. (min)</label>
-                        <input type="number" name="duracion" value="30" min="5" max="120" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+                        <label>Duración <span style="font-weight:normal;color:#94a3b8;">(min)</span></label>
+                        <input type="number"
+                               name="duracion"
+                               value="5"
+                               min="5"
+                               max="120"
+                               step="5"
+                               onkeydown="return false"
+                               required>
                     </div>
                 </div>
             </div>
