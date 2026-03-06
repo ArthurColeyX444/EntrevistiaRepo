@@ -14,6 +14,7 @@ namespace EntrevistiaWEB.Controllers
         private readonly IMongoCollection<Cliente> _clientes;
         private readonly IMongoCollection<Administrador> _admins;
         private readonly IMongoCollection<Entrevista> _entrevistas;
+        private readonly IMongoCollection<Pregunta> _preguntas;
         public HomeController()
         {
             var client = new MongoClient("mongodb+srv://arthurcoley:634990@entrevistia.jstrsql.mongodb.net/?retryWrites=true&w=majority&appName=entrevistia");
@@ -23,6 +24,7 @@ namespace EntrevistiaWEB.Controllers
             
             _admins = database.GetCollection<Administrador>("Administrador");
             _entrevistas = database.GetCollection<Entrevista>("Entrevista");
+            _preguntas = database.GetCollection<Pregunta>("Preguntas");
         }
 
         [HttpPost]
@@ -51,6 +53,45 @@ namespace EntrevistiaWEB.Controllers
                 return RedirectToAction("InicioAdmin");
             }
             catch (Exception) { return RedirectToAction("InicioAdmin"); }
+        }
+
+        [HttpPost]
+        public ActionResult CrearEntrevista(Entrevista nuevaEntrevista, List<string> idPreguntasSeleccionadas)
+        {
+            try
+            {
+                // Seguridad
+                if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Admin") return RedirectToAction("Login", "Home");
+
+                // Generamos ID único para la entrevista
+                if (string.IsNullOrEmpty(nuevaEntrevista.idEntrevista))
+                {
+                    nuevaEntrevista.idEntrevista = "ENT_" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
+                }
+
+                // Asignamos la lista de IDs de las preguntas que el administrador seleccionó (los checkboxes)
+                if (idPreguntasSeleccionadas != null)
+                {
+                    nuevaEntrevista.idPreguntas = idPreguntasSeleccionadas;
+                }
+                else
+                {
+                    nuevaEntrevista.idPreguntas = new List<string>(); // Evitamos que sea nulo si no seleccionó ninguna
+                }
+
+                // Guardamos en la Base de Datos
+                _entrevistas.InsertOne(nuevaEntrevista);
+
+                // Forzamos a que se abra la pestaña de entrevistas al recargar
+                TempData["ActiveTab"] = "entrevistas";
+
+                return RedirectToAction("InicioAdmin");
+            }
+            catch (Exception ex)
+            {
+                TempData["ActiveTab"] = "entrevistas";
+                return RedirectToAction("InicioAdmin");
+            }
         }
 
         [HttpPost]
@@ -134,8 +175,68 @@ namespace EntrevistiaWEB.Controllers
 
             ViewBag.Entrevistas = _entrevistas.Find(e => true).ToList();
 
+            ViewBag.Preguntas = _preguntas.Find(p => true).ToList();
+
             // PASAMOS LA LISTA DE CLIENTES AL MODELO PRINCIPAL
             return View(listaClientes);
+        }
+
+        [HttpPost]
+        public ActionResult CrearPregunta(Pregunta nuevaPregunta)
+        {
+            try
+            {
+                // Seguridad: Validamos que sea un Admin
+                if (Session["Perfil"] == null || Session["Perfil"].ToString() != "Admin") return RedirectToAction("Login", "Home");
+
+                // Le generamos un código único a la pregunta (Ej: PRG_8A4B92)
+                if (string.IsNullOrEmpty(nuevaPregunta.idPregunta))
+                {
+                    nuevaPregunta.idPregunta = "PRG_" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
+                }
+
+                // Guardamos la pregunta en MongoDB
+                _preguntas.InsertOne(nuevaPregunta);
+
+                // TRUCO: Le decimos a la página que al recargar, abra directamente la pestaña de Preguntas
+                TempData["ActiveTab"] = "preguntas";
+
+                return RedirectToAction("InicioAdmin");
+            }
+            catch (Exception ex)
+            {
+                TempData["ActiveTab"] = "preguntas";
+                return RedirectToAction("InicioAdmin");
+            }
+        }
+
+        [HttpPost]
+        public JsonResult CrearPreguntaAjax(Pregunta nuevaPregunta)
+        {
+            try
+            {
+                // Generamos ID
+                if (string.IsNullOrEmpty(nuevaPregunta.idPregunta))
+                {
+                    nuevaPregunta.idPregunta = "PRG_" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
+                }
+
+                // Guardamos en Mongo
+                _preguntas.InsertOne(nuevaPregunta);
+
+                // Devolvemos un JSON con los datos para que JavaScript los pinte en la pantalla de inmediato
+                return Json(new
+                {
+                    success = true,
+                    idPregunta = nuevaPregunta.idPregunta,
+                    texto = nuevaPregunta.textoPregunta,
+                    categoria = nuevaPregunta.categoria
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
     }
 }
