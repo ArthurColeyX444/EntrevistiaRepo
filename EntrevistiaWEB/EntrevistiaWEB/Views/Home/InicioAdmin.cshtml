@@ -393,12 +393,19 @@
 
                 <div class="new-input-group full-w" style="margin-bottom: 15px;">
                     <label>Título de la Entrevista</label>
-                    <input type="text" placeholder="Ej: Entrevista Frontend React" required />
+                    <input type="text"
+                           placeholder="Ej: Entrevista Frontend React"
+                           pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"
+                           title="Solo se permiten letras"
+                           required>
                 </div>
 
                 <div class="new-input-group full-w" style="margin-bottom: 15px;">
                     <label>Descripción</label>
-                    <textarea placeholder="Breve descripción de la entrevista"></textarea>
+                    <textarea placeholder="Breve descripción de la entrevista"
+                              pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+"
+                              title="Solo se permiten letras">
+                    </textarea>
                 </div>
 
                 <div class="modal-grid" style="margin-bottom: 15px;">
@@ -414,6 +421,7 @@
                     <div class="new-input-group">
                         <label>Tipo</label>
                         <select>
+                            <option>Selecciona una técnica</option>
                             <option>Técnica</option>
                             <option>Habilidades Blandas</option>
                             <option>Psicométrica</option>
@@ -422,6 +430,7 @@
                     <div class="new-input-group">
                         <label>Nivel</label>
                         <select>
+                            <option>Selecciona un nivel</option>
                             <option>Junior</option>
                             <option>Semi-Senior</option>
                             <option>Senior</option>
@@ -435,7 +444,7 @@
                         </div>
                         <div class="new-input-group">
                             <label>Duración <span style="font-weight:normal;color:#94a3b8;">(min)</span></label>
-                            <input type="number" value="5" min="5" max="120" required>
+                            <input type="number" value="30" min="30" max="120" step="5" required>
                         </div>
                     </div>
                 </div>
@@ -637,5 +646,3 @@
 }
 
 
-
-"https://gemini.google.com/share/206c79c4d269"
