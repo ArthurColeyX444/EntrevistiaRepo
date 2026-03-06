@@ -26,5 +26,10 @@ namespace EntrevistiaWEB.Models
         public string nivel { get; set; }
         public string modalidad { get; set; }
         public int duracion { get; set; }
+
+        
+
+        [BsonElement("idPreguntas")]
+        public List<string> idPreguntas { get; set; } = new List<string>();
     }
 }
